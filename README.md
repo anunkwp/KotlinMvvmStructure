@@ -1,0 +1,2 @@
+# KotlinMvvmStructure
+for learning yourself
