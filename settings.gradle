@@ -1,0 +1,4 @@
+rootProject.name='KotlinMvvmStructure'
+include ':app'
+include ':Network'
+include ':Common'
