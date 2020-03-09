@@ -1,7 +1,8 @@
-package com.nankung.network.remote
+package com.nankung.network.network
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
+import com.nankung.network.remote.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
@@ -11,7 +12,8 @@ constructor(private val contextProviders: ContextProviders) {
     private val result = MediatorLiveData<Resource<ResultType>>()
 
     init {
-        result.value = Resource.loading(null)
+        result.value =
+            Resource.loading(null)
         val dbSource = loadFromDb()
         result.addSource(dbSource) { data ->
             result.removeSource(dbSource)
@@ -19,7 +21,11 @@ constructor(private val contextProviders: ContextProviders) {
                 fetchFromNetwork(dbSource)
             } else {
                 result.addSource(dbSource) { newData ->
-                    setValue(Resource.success(newData))
+                    setValue(
+                        Resource.success(
+                            newData
+                        )
+                    )
                 }
             }
         }
@@ -34,7 +40,11 @@ constructor(private val contextProviders: ContextProviders) {
     private fun fetchFromNetwork(dbSource: LiveData<ResultType>) {
         val apiResponse = createCall()
         result.addSource(dbSource) { newData ->
-            setValue(Resource.loading(newData))
+            setValue(
+                Resource.loading(
+                    newData
+                )
+            )
         }
 
         result.addSource(apiResponse) { response ->
@@ -46,7 +56,11 @@ constructor(private val contextProviders: ContextProviders) {
                         saveCallResult(processResponse(response))
                         GlobalScope.launch(contextProviders.Main) {
                             result.addSource(loadFromDb()) { newData ->
-                                setValue(Resource.success(newData))
+                                setValue(
+                                    Resource.success(
+                                        newData
+                                    )
+                                )
                             }
                         }
                     }
@@ -54,14 +68,23 @@ constructor(private val contextProviders: ContextProviders) {
                 is ApiEmptyResponse -> {
                     GlobalScope.launch(contextProviders.Main) {
                         result.addSource(loadFromDb()) { newData ->
-                            setValue(Resource.success(newData))
+                            setValue(
+                                Resource.success(
+                                    newData
+                                )
+                            )
                         }
                     }
                 }
                 is ApiErrorResponse -> {
                     onFetchFailed()
                     result.addSource(dbSource) { newData ->
-                        setValue(Resource.error(response.errorMessage, newData))
+                        setValue(
+                            Resource.error(
+                                response.errorMessage,
+                                newData
+                            )
+                        )
                     }
                 }
             }

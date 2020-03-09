@@ -1,4 +1,4 @@
-package com.nankung.network.service
+package com.nankung.network.service.interfaces
 
 import androidx.lifecycle.LiveData
 import com.nankung.network.model.PopularResponse

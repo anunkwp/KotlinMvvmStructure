@@ -1,4 +1,4 @@
-package com.nankung.network.model.dao
+package com.nankung.network.database.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao

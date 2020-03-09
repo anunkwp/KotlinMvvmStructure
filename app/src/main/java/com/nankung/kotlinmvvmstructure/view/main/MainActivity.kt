@@ -3,20 +3,17 @@ package com.nankung.kotlinmvvmstructure.view.main
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.LinearLayout
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.nankung.kotlinmvvmstructure.R
 import com.nankung.kotlinmvvmstructure.view.main.adapter.RecyclerViewMovieAdapter
 import com.nankung.kotlinmvvmstructure.view.util.obtainViewModel
-import com.nankung.network.remote.ApiResponse
-import com.nankung.network.remote.Resource
 import com.nankung.network.remote.Status
-import com.nankung.network.service.URLService
+import com.nankung.common.module.base.URLService
+import com.nankung.common.module.base.mvvm.activity.AppMvvmActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppMvvmActivity() {
 
     lateinit var viewModel : MainViewModel
 

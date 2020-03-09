@@ -2,7 +2,6 @@ package com.nankung.network.model
 
 import androidx.room.Entity
 import com.google.gson.annotations.SerializedName
-import com.squareup.moshi.Json
 
 @Entity(tableName = "movie_popular", primaryKeys = ["id"])
 data class PopularResult(

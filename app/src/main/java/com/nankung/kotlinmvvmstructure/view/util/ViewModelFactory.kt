@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.nankung.kotlinmvvmstructure.view.main.MainViewModel
 import com.nankung.network.database.MovieDatabase
 import com.nankung.network.repository.MovieRepository
-import com.nankung.network.service.MovieServiceFactory
+import com.nankung.network.service.ApiServiceFactory
 
 
 class ViewModelFactory private constructor(
@@ -34,11 +34,13 @@ class ViewModelFactory private constructor(
                     application,
                     MovieRepository.getInstance(
                         MovieDatabase.getDatabase(application.applicationContext),
-                        MovieServiceFactory.getService()
+                        ApiServiceFactory.getService()
                     )
                 )
                     .also { INSTANCE = it }
             }
         }
+
+
     }
 }

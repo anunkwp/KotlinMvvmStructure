@@ -4,9 +4,8 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.nankung.network.model.PopularResponse
 import com.nankung.network.model.PopularResult
-import com.nankung.network.model.dao.MovieDao
+import com.nankung.network.database.dao.MovieDao
 
 @Database(entities = [PopularResult::class], version = 1, exportSchema = false)
 abstract class MovieDatabase : RoomDatabase() {

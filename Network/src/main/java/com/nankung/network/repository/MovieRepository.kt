@@ -1,15 +1,15 @@
 package com.nankung.network.repository
 
 import androidx.lifecycle.LiveData
-import com.nankung.network.model.dao.MovieDao
-import com.nankung.network.database.MovieDatabase
+import com.nankung.network.database.dao.MovieDao
 import com.nankung.network.model.PopularResponse
 import com.nankung.network.model.PopularResult
+import com.nankung.network.database.MovieDatabase
+import com.nankung.network.network.NetworkBoundResource
 import com.nankung.network.remote.ApiResponse
 import com.nankung.network.remote.ContextProviders
-import com.nankung.network.remote.NetworkBoundResource
 import com.nankung.network.remote.Resource
-import com.nankung.network.service.MovieService
+import com.nankung.network.service.interfaces.MovieService
 
 class MovieRepository(
     private val db : MovieDatabase,
