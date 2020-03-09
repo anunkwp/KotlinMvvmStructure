@@ -6,8 +6,9 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.nankung.network.model.PopularResult
 import com.nankung.network.database.dao.MovieDao
+import com.nankung.network.model.TokenResponse
 
-@Database(entities = [PopularResult::class], version = 1, exportSchema = false)
+@Database(entities = [PopularResult::class,TokenResponse::class], version = 2, exportSchema = false)
 abstract class MovieDatabase : RoomDatabase() {
 
     abstract fun movieDao(): MovieDao

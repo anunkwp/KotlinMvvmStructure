@@ -2,7 +2,7 @@ package com.nankung.network.remote
 
 import androidx.lifecycle.LiveData
 
-class AbsentLiveData<T : Any?> private constructor() : LiveData<T>() {
+class AbsentLiveData<T : Any?> : LiveData<T>() {
     init {
         postValue(null)
     }

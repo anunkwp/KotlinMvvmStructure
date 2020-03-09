@@ -3,7 +3,7 @@ package com.nankung.kotlinmvvmstructure.view.util
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.nankung.kotlinmvvmstructure.view.main.MainViewModel
+import com.nankung.kotlinmvvmstructure.view.module.main.MainViewModel
 import com.nankung.network.database.MovieDatabase
 import com.nankung.network.repository.MovieRepository
 import com.nankung.network.service.ApiServiceFactory

@@ -1,12 +1,11 @@
-package com.nankung.kotlinmvvmstructure.view.main
+package com.nankung.kotlinmvvmstructure.view.module.main
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.nankung.kotlinmvvmstructure.R
-import com.nankung.kotlinmvvmstructure.view.main.adapter.RecyclerViewMovieAdapter
+import com.nankung.kotlinmvvmstructure.view.module.main.adapter.RecyclerViewMovieAdapter
 import com.nankung.kotlinmvvmstructure.view.util.obtainViewModel
 import com.nankung.network.remote.Status
 import com.nankung.common.module.base.URLService
@@ -21,8 +20,9 @@ class MainActivity : AppMvvmActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         viewModel = obtainViewModel()
-        viewModel.initData(URLService.tmdbApiKey)
+        viewModel.initPopularData(URLService.tmdbApiKey)
         initialObServe()
+
 
     }
 
@@ -30,12 +30,14 @@ class MainActivity : AppMvvmActivity() {
         viewModel.requestPopularResource.observe(this, Observer {
             when(it.status){
                 Status.SUCCESS ->{
-                    recyclerviewMovie.apply {
-                        val movieAdapter = RecyclerViewMovieAdapter(this@MainActivity, it.data!!)
-                        layoutManager = LinearLayoutManager(this@MainActivity)
-                        adapter = movieAdapter
-                        movieAdapter.notifyDataSetChanged()
-                        Log.d("Room", "> ${it.data}")
+                    it.data.let { data->
+                        recyclerviewMovie.apply {
+                            val movieAdapter = RecyclerViewMovieAdapter(this@MainActivity,data!!)
+                            layoutManager = LinearLayoutManager(this@MainActivity)
+                            adapter = movieAdapter
+                            movieAdapter.notifyDataSetChanged()
+                            Log.d("Room", "> $it")
+                        }
                     }
                     Log.d("CallStatus","> is  SUCCESS ${it.message}")
                 }
