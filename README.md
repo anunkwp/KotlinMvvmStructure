@@ -1,2 +1,4 @@
 # KotlinMvvmStructure
-for learning yourself
+This project create for learning about Kotlin MVVM Structure with Coroutine.
+Some points may be wrong. Please advise me.
+** Experince coding in Android Studio 10 month.
