@@ -6,10 +6,7 @@ import com.nankung.network.model.TokenResponse
 import com.nankung.network.model.body.ValidateBody
 import com.nankung.network.module.MovieApiService
 import com.nankung.network.remote.ApiResponse
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface MovieService {
 
@@ -19,6 +16,7 @@ interface MovieService {
         @Body body: ValidateBody
     ): LiveData<ApiResponse<TokenResponse>>
 
+    //@Headers("language:th")
     @GET(MovieApiService.TOKEN_NEW)
     fun requestNewToken(
         @Query("api_key") api_key: String
