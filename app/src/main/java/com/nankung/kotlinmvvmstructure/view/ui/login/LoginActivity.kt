@@ -1,4 +1,4 @@
-package com.nankung.kotlinmvvmstructure.view.module.login
+package com.nankung.kotlinmvvmstructure.view.ui.login
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -12,7 +12,7 @@ import com.nankung.common.module.base.mvvm.activity.AppMvvmActivity
 import com.nankung.common.module.dialog.hideLoading
 import com.nankung.common.module.dialog.showGradientLoading
 import com.nankung.kotlinmvvmstructure.R
-import com.nankung.kotlinmvvmstructure.view.module.main.MainActivity
+import com.nankung.kotlinmvvmstructure.view.ui.main.MainActivity
 import com.nankung.kotlinmvvmstructure.view.util.obtainViewModel
 import com.nankung.network.model.body.ValidateBody
 import com.nankung.network.model.exeption.ErrorConverter
@@ -79,7 +79,6 @@ class LoginActivity : AppMvvmActivity() {
                             val body = ValidateBody(username, password, data!!.request_token)
                             viewModel.initValidate(URLService.tmdbApiKey, body)
                             callValidateToken()
-
                         }
                     }
                     Log.d("is SUCCESS"," ${it.message}")

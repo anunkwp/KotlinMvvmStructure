@@ -1,4 +1,4 @@
-package com.nankung.kotlinmvvmstructure.view.module.main
+package com.nankung.kotlinmvvmstructure.view.ui.main
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -7,7 +7,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.nankung.common.module.dialog.showChoiceDialog
 import com.nankung.kotlinmvvmstructure.R
-import com.nankung.kotlinmvvmstructure.view.module.main.adapter.RecyclerViewMovieAdapter
+import com.nankung.kotlinmvvmstructure.view.ui.main.adapter.RecyclerViewMovieAdapter
 import com.nankung.kotlinmvvmstructure.view.util.obtainViewModel
 import com.nankung.network.remote.Status
 import com.nankung.common.module.base.URLService

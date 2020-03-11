@@ -1,4 +1,4 @@
-package com.nankung.kotlinmvvmstructure.view.module.main.adapter
+package com.nankung.kotlinmvvmstructure.view.ui.main.adapter
 
 import android.content.Context
 import android.view.LayoutInflater

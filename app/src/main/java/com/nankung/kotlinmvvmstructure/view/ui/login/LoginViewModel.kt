@@ -1,13 +1,11 @@
-package com.nankung.kotlinmvvmstructure.view.module.login
+package com.nankung.kotlinmvvmstructure.view.ui.login
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
-import com.nankung.network.engine.trigger.PopularTrigger
 import com.nankung.network.engine.trigger.ValidateTrigger
-import com.nankung.network.model.PopularResult
 import com.nankung.network.model.TokenResponse
 import com.nankung.network.model.body.ValidateBody
 import com.nankung.network.remote.AbsentLiveData

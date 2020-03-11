@@ -1,0 +1,133 @@
+<resources>
+
+    <style name="TextView.Bold.Black"/>
+
+    <style name="TextView.Medium.Black"/>
+
+    <style name="TextView.Thin.Black"/>
+
+    <!--================ Bold Black Primary ===========================================================-->
+    <style name="TextView.Bold.Black.Primary">
+        <item name="android:textColor">@color/color_black</item>
+    </style>
+
+    <style name="TextView.Bold.Black.Primary.BestLarge">
+        <item name="android:textSize">@dimen/text_size_best_large</item>
+    </style>
+
+    <style name="TextView.Bold.Black.Primary.ExtraLarge">
+        <item name="android:textSize">@dimen/text_size_extra_large</item>
+    </style>
+
+    <style name="TextView.Bold.Black.Primary.Large">
+        <item name="android:textSize">@dimen/text_size_large</item>
+    </style>
+
+    <style name="TextView.Bold.Black.Primary.Bigger">
+        <item name="android:textSize">@dimen/text_size_bigger</item>
+    </style>
+
+    <style name="TextView.Bold.Black.Primary.Big">
+        <item name="android:textSize">@dimen/text_size_big</item>
+    </style>
+
+    <style name="TextView.Bold.Black.Primary.Normal">
+        <item name="android:textSize">@dimen/text_size_normal</item>
+    </style>
+
+    <style name="TextView.Bold.Black.Primary.Small">
+        <item name="android:textSize">@dimen/text_size_small</item>
+    </style>
+
+    <style name="TextView.Bold.Black.Primary.VerySmall">
+        <item name="android:textSize">@dimen/text_size_very_small</item>
+    </style>
+
+    <style name="TextView.Bold.Black.Primary.SuperSmall">
+        <item name="android:textSize">@dimen/text_size_super_small</item>
+    </style>
+
+    <!-- ================ Medium Black Primary ===========================================================-->
+    <style name="TextView.Medium.Black.Primary">
+        <item name="android:textColor">@color/color_black</item>
+    </style>
+
+    <style name="TextView.Medium.Black.Primary.BestLarge">
+        <item name="android:textSize">@dimen/text_size_best_large</item>
+    </style>
+
+    <style name="TextView.Medium.Black.Primary.ExtraLarge">
+        <item name="android:textSize">@dimen/text_size_extra_large</item>
+    </style>
+
+    <style name="TextView.Medium.Black.Primary.Large">
+        <item name="android:textSize">@dimen/text_size_large</item>
+    </style>
+
+    <style name="TextView.Medium.Black.Primary.Bigger">
+        <item name="android:textSize">@dimen/text_size_bigger</item>
+    </style>
+
+    <style name="TextView.Medium.Black.Primary.Big">
+        <item name="android:textSize">@dimen/text_size_big</item>
+    </style>
+
+    <style name="TextView.Medium.Black.Primary.Normal">
+        <item name="android:textSize">@dimen/text_size_normal</item>
+    </style>
+
+    <style name="TextView.Medium.Black.Primary.Small">
+        <item name="android:textSize">@dimen/text_size_small</item>
+    </style>
+
+    <style name="TextView.Medium.Black.Primary.VerySmall">
+        <item name="android:textSize">@dimen/text_size_very_small</item>
+    </style>
+
+    <style name="TextView.Medium.Black.Primary.SuperSmall">
+        <item name="android:textSize">@dimen/text_size_super_small</item>
+    </style>
+
+
+    <!-- ================ Cond Black Primary ===========================================================-->
+    <style name="TextView.Thin.Black.Primary">
+        <item name="android:textColor">@color/color_black</item>
+    </style>
+
+    <style name="TextView.Thin.Black.Primary.BestLarge">
+        <item name="android:textSize">@dimen/text_size_best_large</item>
+    </style>
+
+    <style name="TextView.Thin.Black.Primary.ExtraLarge">
+        <item name="android:textSize">@dimen/text_size_extra_large</item>
+    </style>
+
+    <style name="TextView.Thin.Black.Primary.Large">
+        <item name="android:textSize">@dimen/text_size_large</item>
+    </style>
+
+    <style name="TextView.Thin.Black.Primary.Bigger">
+        <item name="android:textSize">@dimen/text_size_bigger</item>
+    </style>
+
+    <style name="TextView.Thin.Black.Primary.Big">
+        <item name="android:textSize">@dimen/text_size_big</item>
+    </style>
+
+    <style name="TextView.Thin.Black.Primary.Normal">
+        <item name="android:textSize">@dimen/text_size_normal</item>
+    </style>
+
+    <style name="TextView.Thin.Black.Primary.Small">
+        <item name="android:textSize">@dimen/text_size_small</item>
+    </style>
+
+    <style name="TextView.Thin.Black.Primary.VerySmall">
+        <item name="android:textSize">@dimen/text_size_very_small</item>
+    </style>
+
+    <style name="TextView.Thin.Black.Primary.SuperSmall">
+        <item name="android:textSize">@dimen/text_size_super_small</item>
+    </style>
+
+</resources>

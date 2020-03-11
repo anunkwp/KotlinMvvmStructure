@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="text_size_very_very_large">60sp</dimen>
-    <dimen name="text_size_very_large">31sp</dimen>
-    <dimen name="text_size_large">25sp</dimen>
-    <dimen name="text_size_big2">23sp</dimen>
-    <dimen name="text_size_big">21sp</dimen>
-    <dimen name="text_size_normal">19sp</dimen>
-    <dimen name="text_size_small">17sp</dimen>
-    <dimen name="text_size_very_small">15sp</dimen>
-    <dimen name="text_size_super_small">13sp</dimen>
+    <dimen name="text_size_best_large">40sp</dimen>
+    <dimen name="text_size_extra_large">32sp</dimen>
+    <dimen name="text_size_large">26sp</dimen>
+    <dimen name="text_size_bigger">24sp</dimen>
+    <dimen name="text_size_big">22sp</dimen>
+    <dimen name="text_size_normal">18sp</dimen>
+    <dimen name="text_size_small">16sp</dimen>
+    <dimen name="text_size_very_small">14sp</dimen>
+    <dimen name="text_size_super_small">12sp</dimen>
 </resources>

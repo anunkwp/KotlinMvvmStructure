@@ -1,0 +1,21 @@
+<resources>
+
+    <style name="TextView">
+        <item name="android:fontFamily">@font/font_application_medium</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:freezesText">true</item>
+    </style>
+
+    <style name="TextView.Thin">
+        <item name="android:fontFamily">@font/font_application_thin</item>
+    </style>
+
+    <style name="TextView.Medium">
+        <item name="android:fontFamily">@font/font_application_medium</item>
+    </style>
+
+    <style name="TextView.Bold">
+        <item name="android:fontFamily">@font/font_application_bold</item>
+    </style>
+
+</resources>

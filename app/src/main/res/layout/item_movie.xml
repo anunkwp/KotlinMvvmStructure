@@ -7,53 +7,51 @@
 
 
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/poster_path"
             android:layout_width="130dp"
-            android:scaleType="centerCrop"
-            android:layout_height="200dp"/>
+            android:layout_height="200dp"
+            android:scaleType="centerCrop" />
+
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/text_title"
+                style="@style/TextView.Medium.Black.Primary.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="55555555555"
-                android:textStyle="bold" />
+                android:text="55555555555" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/text_vote_average"
+                style="@style/TextView.Medium.Black.Primary.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="55555555555"
-                android:textStyle="bold" />
+                android:text="55555555555" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/text_overview"
+                style="@style/TextView.Medium.Black.Primary.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="55555555555"
-                android:textStyle="bold" />
+                android:text="55555555555" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/text_release_date"
+                style="@style/TextView.Medium.Black.Primary.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="55555555555"
-                android:textStyle="bold" />
-
+                android:text="หลอด" />
 
 
         </LinearLayout>
-
-
 
 
     </LinearLayout>
