@@ -12,7 +12,7 @@ import com.nankung.common.module.glide.GlideApp
   * Created by「 Nan Kung 」on 09 MARCH 2020 ^^
  */
 
-// Normal ImageView
+// Normal ImageView Loading in Background Thread
 
 fun AppCompatImageView.setGlideImage(@DrawableRes id: Int, cache: DiskCacheStrategy = DiskCacheStrategy.ALL) {
     GlideApp.with(this.context)
@@ -38,7 +38,7 @@ fun AppCompatImageView.setGlideImage(bitmap: Bitmap?, cache: DiskCacheStrategy =
         .into(this)
 }
 
-// Circle ImageView
+// Circle ImageView Loading in Background Thread
 fun AppCompatImageView.setCircleImage(@DrawableRes id: Int, cache: DiskCacheStrategy = DiskCacheStrategy.ALL) {
     GlideApp.with(this.context)
         .load(id)

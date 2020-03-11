@@ -97,7 +97,7 @@ constructor(private val contextProviders: ContextProviders) {
 
     abstract fun saveCallResult(item: RequestType)
 
-    protected fun processResponse(response: ApiSuccessResponse<RequestType>) = response.body
+    private fun processResponse(response: ApiSuccessResponse<RequestType>) = response.body
 
     abstract fun createCall(): LiveData<ApiResponse<RequestType>>
 
