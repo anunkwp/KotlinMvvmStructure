@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="color_black">#000000</color>
+    <color name="color_white">#FFFFFF</color>
+
+    <color name="color1">#6200EE</color>
+    <color name="color2">#3700B3</color>
+    <color name="color3">#03DAC5</color>
+    <color name="base_black_50_percent">#80000000</color>
+
+    <integer-array name="gplus_colors">
+        <item>@color/color1</item>
+        <item>@color/color2</item>
+        <item>@color/color3</item>
+    </integer-array>
+
+</resources>

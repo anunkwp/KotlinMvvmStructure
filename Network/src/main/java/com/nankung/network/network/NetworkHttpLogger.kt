@@ -23,7 +23,6 @@ class NetworkHttpLogger : HttpLoggingInterceptor.Logger {
         try {
             val prettyPrintJson =
                 GsonBuilder().setPrettyPrinting().create().toJson(JsonParser().parse(message))
-//            Log.d(TAG, "\n API IS : $PATH_URL \n$prettyPrintJson")
             Log.d(TAG, " \n $prettyPrintJson")
         } catch (m: JsonSyntaxException) {
             m.printStackTrace()

@@ -1,15 +1,18 @@
 package com.nankung.kotlinmvvmstructure.view.module.main
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.nankung.common.module.dialog.showChoiceDialog
 import com.nankung.kotlinmvvmstructure.R
 import com.nankung.kotlinmvvmstructure.view.module.main.adapter.RecyclerViewMovieAdapter
 import com.nankung.kotlinmvvmstructure.view.util.obtainViewModel
 import com.nankung.network.remote.Status
 import com.nankung.common.module.base.URLService
 import com.nankung.common.module.base.mvvm.activity.AppMvvmActivity
+import com.nankung.network.model.exeption.ErrorConverter
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppMvvmActivity() {
@@ -25,7 +28,7 @@ class MainActivity : AppMvvmActivity() {
 
 
     }
-
+    @SuppressLint("LogNotTimber")
     private fun initialObServe(){
         viewModel.requestPopularResource.observe(this, Observer {
             when(it.status){
@@ -36,23 +39,25 @@ class MainActivity : AppMvvmActivity() {
                             layoutManager = LinearLayoutManager(this@MainActivity)
                             adapter = movieAdapter
                             movieAdapter.notifyDataSetChanged()
-                            Log.d("Room", "> $it")
+                            Log.d("Room ","$it")
                         }
                     }
-                    Log.d("CallStatus","> is  SUCCESS ${it.message}")
+                    Log.d("is SUCCESS"," ${it.message}")
                 }
-                Status.LOADING ->{
-                    Log.d("CallStatus","> is LOADING ${it.message}")
+                Status.LOADING -> {
+                    Log.d("is LOADING"," ${it.message}")
                 }
-                Status.EMPTY ->{
-                    Log.d("CallStatus","> is EMPTY ${it.message}")
+                Status.EMPTY -> {
+                    Log.d("is EMPTY"," ${it.message}")
                 }
                 Status.ERROR -> {
-                    Log.d("CallStatus","> is ERROR ${it.message}")
-                    //Do something as Show Dialog Timeout or Handler something
+                    it.message.let { error ->
+                        val messageError =
+                            ErrorConverter.handlerErrorConverter(error!!, this@MainActivity)
+                        showChoiceDialog(title = messageError!![0], message = messageError[1])
+                    }
                 }
             }
-
         })
     }
     private fun obtainViewModel(): MainViewModel = obtainViewModel(MainViewModel::class.java)

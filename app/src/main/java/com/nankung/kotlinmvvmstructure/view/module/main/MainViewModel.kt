@@ -17,9 +17,7 @@ import kotlinx.coroutines.Job
 
 class MainViewModel(application: Application, private val movieRepository: MovieRepository) :
     AndroidViewModel(application) {
-
     private val triggerPopular = MutableLiveData<PopularTrigger>()
-    private val triggerValidate = MutableLiveData<ValidateTrigger>()
     private val api_key = MutableLiveData<String>()
     var job: Job? = null
 
@@ -32,37 +30,12 @@ class MainViewModel(application: Application, private val movieRepository: Movie
             }
         }
 
-    val requestNewToken: LiveData<Resource<TokenResponse>> =
-        Transformations.switchMap(api_key) { keys ->
-            if (keys == null) {
-                AbsentLiveData.create()
-            } else {
-                movieRepository.requestTokenRepository(keys)
-            }
-        }
-    val requestValidateToken: LiveData<Resource<TokenResponse>> =
-        Transformations.switchMap(triggerValidate) { trigger ->
-            if (trigger == null) {
-                AbsentLiveData.create()
-            } else {
-                movieRepository.requestValidateTokenRepository(trigger)
-            }
-        }
-
-
     fun initPopularData(api_key: String) {
         PopularTrigger(api_key).let {
             this.triggerPopular.value = it
             this.api_key.value = api_key
         }
     }
-
-    fun initValidate(api_key: String, body: ValidateBody) {
-        ValidateTrigger(api_key, body).let {
-            this.triggerValidate.value = it
-        }
-    }
-
     override fun onCleared() {
         super.onCleared()
         job?.cancel()
