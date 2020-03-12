@@ -1,6 +1,7 @@
-package com.nankung.network.model
+package com.nankung.network.model.response
 
 import com.google.gson.annotations.SerializedName
+import com.nankung.network.model.response.result.PopularResult
 
 data class PopularResponse(
     @SerializedName("page")

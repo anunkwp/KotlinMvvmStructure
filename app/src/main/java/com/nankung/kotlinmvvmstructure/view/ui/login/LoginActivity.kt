@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.nankung.common.module.base.URLService
 import com.nankung.common.module.base.mvvm.activity.AppMvvmActivity
@@ -13,9 +12,9 @@ import com.nankung.common.module.dialog.showGradientLoading
 import com.nankung.kotlinmvvmstructure.R
 import com.nankung.kotlinmvvmstructure.view.ui.main.MainActivity
 import com.nankung.kotlinmvvmstructure.view.util.obtainViewModel
-import com.nankung.network.model.body.ValidateBody
+import com.nankung.network.model.response.body.ValidateBody
 import com.nankung.network.model.exeption.ErrorConverter
-import com.nankung.network.remote.Status
+import com.nankung.network.remote.Status.*
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppMvvmActivity() {
@@ -45,31 +44,24 @@ class LoginActivity : AppMvvmActivity() {
     private fun callValidateToken() {
         viewModel.requestValidateToken.observe(this, Observer {
             when (it.status) {
-                Status.SUCCESS -> {
+                SUCCESS -> {
                     hideLoading()
                     it.data.let { data ->
-                        Toast.makeText(this@LoginActivity, data!!.request_token, Toast.LENGTH_SHORT)
-                            .show()
                         val intent = Intent(this@LoginActivity, MainActivity::class.java)
                         startActivity(intent)
                     }
-                    Log.d("is SUCCESS", " ${it.message}")
                 }
-                Status.LOADING -> {
+                LOADING -> {
                     showGradientLoading()
                     Log.d("is LOADING", " ${it.message}")
                 }
-                Status.EMPTY -> {
-                    Log.d("is EMPTY", " ${it.message}")
-                }
-                Status.ERROR -> {
+                ERROR -> {
                     it.message.let { error ->
                         Log.d("is ERROR ", "${it.message}")
                         val messageError =
                             ErrorConverter.handlerErrorConverter(error!!)
                         checkHandlerConnectionMessage(messageError)
                     }
-
                 }
             }
 
@@ -80,21 +72,18 @@ class LoginActivity : AppMvvmActivity() {
     private fun initialObServe() {
         viewModel.requestNewToken.observe(this, Observer {
             when (it.status) {
-                Status.SUCCESS -> {
+                SUCCESS -> {
                     hideLoading()
                     it.data.let { data ->
                         viewModel.tokenResponse = data
                     }
-                    Log.d("is SUCCESS", " ${it.message}")
+
                 }
-                Status.LOADING -> {
+                LOADING -> {
                     showGradientLoading()
                     Log.d("is LOADING ", "${it.message}")
                 }
-                Status.EMPTY -> {
-                    Log.d("is EMPTY ", "${it.message}")
-                }
-                Status.ERROR -> {
+                ERROR -> {
                     it.message.let { error ->
                         Log.d("is ERROR ", "${it.message}")
                         val messageError =

@@ -1,7 +1,7 @@
 package com.nankung.network.engine.trigger
 
 import com.nankung.network.engine.Trigger
-import com.nankung.network.model.body.ValidateBody
+import com.nankung.network.model.response.body.ValidateBody
 
 
 class ValidateTrigger(

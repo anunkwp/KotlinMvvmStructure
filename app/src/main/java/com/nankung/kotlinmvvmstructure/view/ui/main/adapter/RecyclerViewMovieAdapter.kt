@@ -9,12 +9,12 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
 import com.nankung.common.module.extension.view.setGlideImage
 import com.nankung.kotlinmvvmstructure.R
-import com.nankung.network.model.PopularResult
+import com.nankung.network.model.response.result.MoviesResult
 import com.nankung.common.module.base.URLService
 
 class RecyclerViewMovieAdapter(
     private var context: Context,
-    private var popularList: List<PopularResult>
+    private var popularList: List<MoviesResult>
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {

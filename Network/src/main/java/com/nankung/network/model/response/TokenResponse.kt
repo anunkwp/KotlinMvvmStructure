@@ -1,4 +1,4 @@
-package com.nankung.network.model
+package com.nankung.network.model.response
 
 import androidx.annotation.NonNull
 import androidx.room.Entity

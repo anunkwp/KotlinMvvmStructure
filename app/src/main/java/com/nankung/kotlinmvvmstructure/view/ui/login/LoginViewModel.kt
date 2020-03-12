@@ -5,10 +5,9 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
-import com.nankung.common.module.extension.isInternetConnected
 import com.nankung.network.engine.trigger.ValidateTrigger
-import com.nankung.network.model.TokenResponse
-import com.nankung.network.model.body.ValidateBody
+import com.nankung.network.model.response.TokenResponse
+import com.nankung.network.model.response.body.ValidateBody
 import com.nankung.network.remote.AbsentLiveData
 import com.nankung.network.remote.Resource
 import com.nankung.network.repository.MovieRepository

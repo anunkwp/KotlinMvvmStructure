@@ -1,9 +1,9 @@
-package com.nankung.network.model
+package com.nankung.network.model.response.result
 
 import androidx.room.Entity
 import com.google.gson.annotations.SerializedName
 
-@Entity(tableName = "movie_popular", primaryKeys = ["id"])
+@Entity(tableName = "popular", primaryKeys = ["id"])
 data class PopularResult(
     @SerializedName("overview")
     val overview: String? = "",

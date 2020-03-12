@@ -4,4 +4,10 @@
     <string name="text_ok">OK</string>
     <string name="text_cancel">Cancel</string>
 
+    <string-array name="Movies">
+        <item>Top Rated</item>
+        <item>UpComing</item>
+        <item>Popular</item>
+        <item>Now Playing</item>
+    </string-array>
 </resources>

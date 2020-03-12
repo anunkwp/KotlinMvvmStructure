@@ -1,4 +1,4 @@
-package com.nankung.network.model.body
+package com.nankung.network.model.response.body
 
 import android.os.Parcel
 import android.os.Parcelable
