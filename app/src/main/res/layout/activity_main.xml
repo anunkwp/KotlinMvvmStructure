@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".view.ui.main.MainActivity">
 
-    <androidx.recyclerview.widget.RecyclerView
+    <com.nankung.common.module.widget.AnimatedRecyclerView
         android:id="@+id/recyclerviewMovie"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

@@ -40,6 +40,7 @@
                 android:id="@+id/text_overview"
                 style="@style/TextView.Medium.Black.Primary.Small"
                 android:layout_width="wrap_content"
+                android:visibility="gone"
                 android:layout_height="wrap_content"
                 android:text="55555555555" />
 
