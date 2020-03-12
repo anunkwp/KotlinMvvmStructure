@@ -18,7 +18,7 @@ import com.nankung.common.R;
 public class AnimatedRecyclerView extends RecyclerView {
     private int orientation = LinearLayoutManager.VERTICAL;
     private boolean reverse = false;
-    private int animationDuration = 200;
+    private int animationDuration = 250;
     private int layoutManagerType = LayoutManagerType.LINEAR;
     private int columns = 1;
     @AnimRes

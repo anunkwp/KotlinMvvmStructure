@@ -7,17 +7,18 @@ import org.json.JSONObject
 
 object ErrorConverter {
 
-    fun handlerErrorConverter(error:String,context:Context):List<String>? {
+    fun handlerErrorConverter(error:String):List<String>? {
         var statusMessage = ""
         var statusCode = ""
-        var listError :List<String>?=null
+        var listError: List<String>?
         try {
             val jObjError = JSONObject(error)
             statusCode =  jObjError.getInt("status_code").toString()
             statusMessage = jObjError.getString("status_message")
-            listError = arrayListOf(statusCode,statusMessage)
+            listError = listOf(statusCode,statusMessage)
         } catch (e: Exception) {
-            Toast.makeText(context, e.message, Toast.LENGTH_LONG).show()
+            e.printStackTrace()
+            listError = listOf(e.toString())
         }
         return listError
     }

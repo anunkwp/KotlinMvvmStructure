@@ -3,10 +3,9 @@ package com.nankung.kotlinmvvmstructure.view.ui.main
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
-import android.view.animation.LayoutAnimationController
+import android.view.View
 import android.view.animation.OvershootInterpolator
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.nankung.common.module.dialog.showChoiceDialog
@@ -15,12 +14,10 @@ import com.nankung.kotlinmvvmstructure.view.ui.main.adapter.RecyclerViewMovieAda
 import com.nankung.kotlinmvvmstructure.view.util.obtainViewModel
 import com.nankung.network.remote.Status
 import com.nankung.common.module.base.URLService
+import com.nankung.common.module.base.interfaces.RecyclerViewInterfaceListener
 import com.nankung.common.module.base.mvvm.activity.AppMvvmActivity
-import com.nankung.common.module.widget.AnimatedRecyclerView
 import com.nankung.network.model.exeption.ErrorConverter
 import jp.wasabeef.recyclerview.adapters.*
-import jp.wasabeef.recyclerview.animators.ScaleInBottomAnimator
-import jp.wasabeef.recyclerview.animators.SlideInLeftAnimator
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppMvvmActivity() {
@@ -49,6 +46,12 @@ class MainActivity : AppMvvmActivity() {
                                 setInterpolator(OvershootInterpolator())
                                 setFirstOnly(false)
                             }
+                            addOnItemTouchListener(RecyclerViewInterfaceListener(this,
+                                object : RecyclerViewInterfaceListener.ClickListener {
+                                    override fun onClick(view: View, position: Int) {
+                                        Toast.makeText(context!!,"${data[position].popularity}",Toast.LENGTH_SHORT).show()
+                                    }
+                                }))
                             movieAdapter.notifyDataSetChanged()
                             scheduleLayoutAnimation()
                             Log.d("Room ", "$it")
@@ -64,9 +67,10 @@ class MainActivity : AppMvvmActivity() {
                 }
                 Status.ERROR -> {
                     it.message.let { error ->
-                        val messageError =
-                            ErrorConverter.handlerErrorConverter(error!!, this@MainActivity)
-                        showChoiceDialog(title = messageError!![0], message = messageError[1])
+                        if (!error.isNullOrEmpty()){
+                            val messageError = ErrorConverter.handlerErrorConverter(error)
+                            checkHandlerConnectionMessage(messageError)
+                        }
                     }
                 }
             }

@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.Observer
-import com.nankung.common.module.dialog.showChoiceDialog
 import com.nankung.common.module.base.URLService
 import com.nankung.common.module.base.mvvm.activity.AppMvvmActivity
 import com.nankung.common.module.dialog.hideLoading
@@ -27,7 +26,17 @@ class LoginActivity : AppMvvmActivity() {
         viewModel = obtainViewModel()
         viewModel.initKeys(URLService.tmdbApiKey)
         initialObServe()
+        initListener()
+    }
 
+    private fun initListener() {
+        btnLogin?.setOnClickListener {
+            val username = txtUsername.text.toString().trim()
+            val password = txtPassword.text.toString().trim()
+            val body = ValidateBody(username, password, viewModel.tokenResponse!!.request_token)
+            viewModel.initValidate(URLService.tmdbApiKey, body)
+            callValidateToken()
+        }
     }
 
     private fun obtainViewModel(): LoginViewModel = obtainViewModel(LoginViewModel::class.java)
@@ -44,20 +53,21 @@ class LoginActivity : AppMvvmActivity() {
                         val intent = Intent(this@LoginActivity, MainActivity::class.java)
                         startActivity(intent)
                     }
-                    Log.d("is SUCCESS"," ${it.message}")
+                    Log.d("is SUCCESS", " ${it.message}")
                 }
                 Status.LOADING -> {
                     showGradientLoading()
-                    Log.d("is LOADING"," ${it.message}")
+                    Log.d("is LOADING", " ${it.message}")
                 }
                 Status.EMPTY -> {
-                    Log.d("is EMPTY"," ${it.message}")
+                    Log.d("is EMPTY", " ${it.message}")
                 }
                 Status.ERROR -> {
                     it.message.let { error ->
+                        Log.d("is ERROR ", "${it.message}")
                         val messageError =
-                            ErrorConverter.handlerErrorConverter(error!!, this@LoginActivity)
-                        showChoiceDialog(title = messageError!![0], message = messageError[1])
+                            ErrorConverter.handlerErrorConverter(error!!)
+                        checkHandlerConnectionMessage(messageError)
                     }
 
                 }
@@ -73,28 +83,23 @@ class LoginActivity : AppMvvmActivity() {
                 Status.SUCCESS -> {
                     hideLoading()
                     it.data.let { data ->
-                        btnLogin.setOnClickListener {
-                            val username = txtUsername.text.toString().trim()
-                            val password = txtPassword.text.toString().trim()
-                            val body = ValidateBody(username, password, data!!.request_token)
-                            viewModel.initValidate(URLService.tmdbApiKey, body)
-                            callValidateToken()
-                        }
+                        viewModel.tokenResponse = data
                     }
-                    Log.d("is SUCCESS"," ${it.message}")
+                    Log.d("is SUCCESS", " ${it.message}")
                 }
                 Status.LOADING -> {
                     showGradientLoading()
-                    Log.d("is LOADING ","${it.message}")
+                    Log.d("is LOADING ", "${it.message}")
                 }
                 Status.EMPTY -> {
-                    Log.d("is EMPTY ","${it.message}")
+                    Log.d("is EMPTY ", "${it.message}")
                 }
                 Status.ERROR -> {
                     it.message.let { error ->
+                        Log.d("is ERROR ", "${it.message}")
                         val messageError =
-                            ErrorConverter.handlerErrorConverter(error!!, this@LoginActivity)
-                        showChoiceDialog(title = messageError!![0], message = messageError[1])
+                            ErrorConverter.handlerErrorConverter(error!!)
+                        checkHandlerConnectionMessage(messageError)
                     }
                 }
             }

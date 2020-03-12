@@ -19,7 +19,8 @@ sealed class ApiResponse<T> {
                 } else {
                     ApiSuccessResponse(body = body)
                 }
-            } else {
+            }
+            else {
                 val msg = response.errorBody()?.string()
                 val errorMsg = if (msg.isNullOrEmpty()) {
                     response.message()

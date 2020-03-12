@@ -12,6 +12,9 @@ import com.nankung.network.remote.Resource
 import com.nankung.network.repository.MovieRepository
 import kotlinx.coroutines.Job
 
+//What is LiveData ,Observe,ViewModel or switchMap
+// -> Read Here:  https://bit.ly/3cVrHoy
+
 class MainViewModel(application: Application, private val movieRepository: MovieRepository) :
     AndroidViewModel(application) {
     private val triggerPopular = MutableLiveData<PopularTrigger>()

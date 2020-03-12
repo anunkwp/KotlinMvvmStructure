@@ -57,6 +57,7 @@ class ApiServiceFactory {
             val client = OkHttpClient.Builder()
             client.callTimeout(30, TimeUnit.SECONDS)
             client.writeTimeout(30, TimeUnit.SECONDS)
+            client.readTimeout(30, TimeUnit.SECONDS)
             client.connectTimeout(30, TimeUnit.SECONDS)
             client.addInterceptor(headerAuthorizationInterceptor)
             client.addInterceptor(
