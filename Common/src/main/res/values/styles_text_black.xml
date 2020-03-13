@@ -8,7 +8,7 @@
 
     <!--================ Bold Black Primary ===========================================================-->
     <style name="TextView.Bold.Black.Primary">
-        <item name="android:textColor">@color/color_black</item>
+        <item name="android:textColor">@color/base_black_100_percent</item>
     </style>
 
     <style name="TextView.Bold.Black.Primary.BestLarge">
@@ -49,7 +49,7 @@
 
     <!-- ================ Medium Black Primary ===========================================================-->
     <style name="TextView.Medium.Black.Primary">
-        <item name="android:textColor">@color/color_black</item>
+        <item name="android:textColor">@color/base_black_100_percent</item>
     </style>
 
     <style name="TextView.Medium.Black.Primary.BestLarge">
@@ -91,7 +91,7 @@
 
     <!-- ================ Cond Black Primary ===========================================================-->
     <style name="TextView.Thin.Black.Primary">
-        <item name="android:textColor">@color/color_black</item>
+        <item name="android:textColor">@color/base_black_100_percent</item>
     </style>
 
     <style name="TextView.Thin.Black.Primary.BestLarge">

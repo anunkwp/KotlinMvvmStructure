@@ -1,17 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="color_black">#000000</color>
-    <color name="color_white">#FFFFFF</color>
-
     <color name="color1">#6200EE</color>
     <color name="color2">#3700B3</color>
     <color name="color3">#03DAC5</color>
-    <color name="base_black_50_percent">#80000000</color>
 
     <integer-array name="gplus_colors">
         <item>@color/color1</item>
         <item>@color/color2</item>
         <item>@color/color3</item>
     </integer-array>
+
+    <!--Base White-->
+    <color name="base_white_10_percent">#1AFFFFFF</color>
+    <color name="base_white_20_percent">#33FFFFFF</color>
+    <color name="base_white_30_percent">#4DFFFFFF</color>
+    <color name="base_white_40_percent">#66FFFFFF</color>
+    <color name="base_white_50_percent">#80FFFFFF</color>
+    <color name="base_white_60_percent">#99FFFFFF</color>
+    <color name="base_white_70_percent">#B3FFFFFF</color>
+    <color name="base_white_80_percent">#CCFFFFFF</color>
+    <color name="base_white_90_percent">#E6FFFFFF</color>
+    <color name="base_white_100_percent">#FFFFFF</color>
+
+    <!--Base Black-->
+    <color name="base_black_10_percent">#1A000000</color>
+    <color name="base_black_20_percent">#33000000</color>
+    <color name="base_black_30_percent">#4D000000</color>
+    <color name="base_black_40_percent">#66000000</color>
+    <color name="base_black_50_percent">#80000000</color>
+    <color name="base_black_60_percent">#99000000</color>
+    <color name="base_black_70_percent">#B3000000</color>
+    <color name="base_black_80_percent">#CC000000</color>
+    <color name="base_black_90_percent">#E6000000</color>
+    <color name="base_black_100_percent">#000000</color>
 
 </resources>

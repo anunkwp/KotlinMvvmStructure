@@ -19,8 +19,11 @@ import java.util.concurrent.atomic.AtomicBoolean
  *
  *
  * Note that only one observer is going to be notified of changes.
+ *
+อ่านนี่เลย https://github.com/android/architecture-samples/blob/dev-todo-mvvm-live/todoapp/app/src/main/java/com/example/android/architecture/blueprints/todoapp/SingleLiveEvent.java
  */
-class SingleLiveData<T> : MutableLiveData<T>() {
+
+class SingleLiveEvent<T> : MutableLiveData<T>() {
 
     private val mPending = AtomicBoolean(false)
 

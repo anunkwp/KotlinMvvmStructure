@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:background="@color/color_white">
+    tools:background="@color/base_white_100_percent">
 
     <fr.castorflex.android.circularprogressbar.CircularProgressBar
         android:id="@+id/loading_circular"

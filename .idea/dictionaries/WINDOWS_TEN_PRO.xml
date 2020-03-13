@@ -2,7 +2,10 @@
   <dictionary name="WINDOWS_TEN_PRO">
     <words>
       <w>clicklistener</w>
+      <w>corountines</w>
+      <w>edittext</w>
       <w>kung</w>
+      <w>lifecycler</w>
       <w>mvvm</w>
       <w>tmdb</w>
     </words>

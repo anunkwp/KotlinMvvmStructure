@@ -7,7 +7,7 @@
     android:padding="50dp">
 
 
-    <androidx.appcompat.widget.AppCompatEditText
+    <com.nankung.common.module.widget.AppEdittext
         android:id="@+id/txtUsername"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,7 +16,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatEditText
+    <com.nankung.common.module.widget.AppEdittext
         android:id="@+id/txtPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

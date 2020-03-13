@@ -12,7 +12,7 @@ import com.nankung.kotlinmvvmstructure.R
 import com.nankung.kotlinmvvmstructure.view.ui.main.adapter.RecyclerViewMovieAdapter
 import com.nankung.kotlinmvvmstructure.view.util.obtainViewModel
 import com.nankung.common.module.base.URLService
-import com.nankung.common.module.base.interfaces.RecyclerViewInterfaceListener
+import com.nankung.common.module.base.interfaces.BaseRecyclerViewItemTouchListener
 import com.nankung.common.module.base.mvvm.activity.AppMvvmActivity
 import com.nankung.network.model.exeption.ErrorConverter
 import com.nankung.network.model.response.result.MoviesResult
@@ -22,8 +22,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppMvvmActivity() {
 
-    lateinit var viewModel: MainViewModel
-    var movieAdapter: RecyclerViewMovieAdapter? = null
+    private  lateinit var viewModel: MainViewModel
+    private var movieAdapter: RecyclerViewMovieAdapter? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -34,8 +34,6 @@ class MainActivity : AppMvvmActivity() {
         btnPopular.setOnClickListener(onButtonClick())
         btnTopRated.setOnClickListener(onButtonClick())
         btnUpcoming.setOnClickListener(onButtonClick())
-
-
     }
 
     @SuppressLint("LogNotTimber")
@@ -43,18 +41,16 @@ class MainActivity : AppMvvmActivity() {
         return View.OnClickListener {
             when (it) {
                 btnNowPlay -> {
-                    viewModel.requestNowPlayingResource().observe(this@MainActivity, Observer {
-                        when (it.status) {
+                    viewModel.requestNowPlayingResource().observe(this@MainActivity, Observer { response ->
+                        when (response.status) {
                             SUCCESS -> {
-                                it.data.let { data ->
-                                    initRecyclerView(data)
-                                }
+                                initRecyclerView(response.data)
                             }
                             LOADING -> {
-                                Log.d("is LOADING", " ${it.message}")
+                                Log.d("is LOADING", " ${response.message}")
                             }
                             ERROR -> {
-                                it.message.let { error ->
+                                response.message.let { error ->
                                     val messageError = ErrorConverter.handlerErrorConverter(error!!)
                                     checkHandlerConnectionMessage(messageError)
                                 }
@@ -64,19 +60,17 @@ class MainActivity : AppMvvmActivity() {
 
                 }
                 btnPopular -> {
-                    viewModel.requestPopularResource().observe(this@MainActivity, Observer {
-                        when (it.status) {
+                    viewModel.requestPopularResource().observe(this@MainActivity, Observer {response ->
+                        when (response.status) {
                             SUCCESS -> {
-                                it.data.let { data ->
-                                    initRecyclerView(data)
-                                }
+                                initRecyclerView(response.data)
 
                             }
                             LOADING -> {
-                                Log.d("is LOADING", " ${it.message}")
+                                Log.d("is LOADING", " ${response.message}")
                             }
                             ERROR -> {
-                                it.message.let { error ->
+                                response.message.let { error ->
                                     val messageError = ErrorConverter.handlerErrorConverter(error!!)
                                     checkHandlerConnectionMessage(messageError)
                                 }
@@ -86,18 +80,16 @@ class MainActivity : AppMvvmActivity() {
 
                 }
                 btnTopRated -> {
-                    viewModel.requestTopRatedResource().observe(this@MainActivity, Observer {
-                        when (it.status) {
+                    viewModel.requestTopRatedResource().observe(this@MainActivity, Observer {response ->
+                        when (response.status) {
                             SUCCESS -> {
-                                it.data.let { data ->
-                                    initRecyclerView(data)
-                                }
+                                initRecyclerView(response.data)
                             }
                             LOADING -> {
-                                Log.d("is LOADING", " ${it.message}")
+                                Log.d("is LOADING", " ${response.message}")
                             }
                             ERROR -> {
-                                it.message.let { error ->
+                                response.message.let { error ->
                                     val messageError = ErrorConverter.handlerErrorConverter(error!!)
                                     checkHandlerConnectionMessage(messageError)
                                 }
@@ -106,18 +98,16 @@ class MainActivity : AppMvvmActivity() {
                     })
                 }
                 btnUpcoming -> {
-                    viewModel.requestUpcomingResource().observe(this@MainActivity, Observer {
-                        when (it.status) {
+                    viewModel.requestUpcomingResource().observe(this@MainActivity, Observer {response ->
+                        when (response.status) {
                             SUCCESS -> {
-                                it.data.let { data ->
-                                    initRecyclerView(data)
-                                }
+                                initRecyclerView(response.data)
                             }
                             LOADING -> {
-                                Log.d("is LOADING", " ${it.message}")
+                                Log.d("is LOADING", " ${response.message}")
                             }
                             ERROR -> {
-                                it.message.let { error ->
+                                response.message.let { error ->
                                     val messageError = ErrorConverter.handlerErrorConverter(error!!)
                                     checkHandlerConnectionMessage(messageError)
                                 }
@@ -143,8 +133,8 @@ class MainActivity : AppMvvmActivity() {
             }
             movieAdapter!!.notifyDataSetChanged()
             addOnItemTouchListener(
-                RecyclerViewInterfaceListener(this,
-                    object : RecyclerViewInterfaceListener.ClickListener {
+                BaseRecyclerViewItemTouchListener(this,
+                    object : BaseRecyclerViewItemTouchListener.ClickListener {
                         override fun onClick(view: View, position: Int) {
                             Toast.makeText(
                                 context!!,
@@ -155,24 +145,22 @@ class MainActivity : AppMvvmActivity() {
                     })
             )
             scheduleLayoutAnimation()
-            Log.d("RoomNow", " ${data.toString()}")
+            Log.d("RoomNow", " $data")
         }
     }
 
     @SuppressLint("LogNotTimber")
     private fun initialObServe() {
-        viewModel.requestTopRatedResource().observe(this@MainActivity, Observer {
-            when (it.status) {
+        viewModel.requestTopRatedResource().observe(this@MainActivity, Observer {response->
+            when (response.status) {
                 SUCCESS -> {
-                    it.data.let { data ->
-                        initRecyclerView(data)
-                    }
+                    initRecyclerView(response.data)
                 }
                 LOADING -> {
-                    Log.d("is LOADING", " ${it.message}")
+                    Log.d("is LOADING", " ${response.message}")
                 }
                 ERROR -> {
-                    it.message.let { error ->
+                    response.message.let { error ->
                         val messageError = ErrorConverter.handlerErrorConverter(error!!)
                         checkHandlerConnectionMessage(messageError)
                     }
