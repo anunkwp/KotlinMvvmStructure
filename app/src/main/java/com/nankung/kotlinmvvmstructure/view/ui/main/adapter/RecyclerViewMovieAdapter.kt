@@ -9,8 +9,8 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
 import com.nankung.common.module.extension.view.setGlideImage
 import com.nankung.kotlinmvvmstructure.R
-import com.nankung.network.model.response.result.MoviesResult
 import com.nankung.common.module.base.URLService
+import com.nankung.network.model.response.result.MoviesResult
 
 class RecyclerViewMovieAdapter(
     private var context: Context,

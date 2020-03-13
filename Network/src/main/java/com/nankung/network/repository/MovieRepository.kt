@@ -38,7 +38,7 @@ class MovieRepository(
             }
     }
 
-    fun requestTokenRepository(api_key: String):  LiveData<Resource<TokenResponse>> {
+    fun requestTokenRepository(api_key: String): LiveData<Resource<TokenResponse>> {
         return object :
             NetworkBoundResource<TokenResponse, TokenResponse>(coroutineContext) {
             override fun saveCallResult(item: TokenResponse) {
@@ -57,7 +57,7 @@ class MovieRepository(
         }.asLiveData()
     }
 
-    fun requestValidateTokenRepository(trigger:ValidateTrigger):  LiveData<Resource<TokenResponse>> {
+    fun requestValidateTokenRepository(trigger: ValidateTrigger): LiveData<Resource<TokenResponse>> {
         return object :
             NetworkBoundResource<TokenResponse, TokenResponse>(coroutineContext) {
             override fun saveCallResult(item: TokenResponse) {
@@ -69,88 +69,95 @@ class MovieRepository(
             }
 
             override fun createCall(): LiveData<ApiResponse<TokenResponse>> =
-                movieService.requestValidateToken(trigger.apiKey,trigger.validateBody)
+                movieService.requestValidateToken(trigger.apiKey, trigger.validateBody)
 
             override fun shouldFetch(data: TokenResponse?): Boolean = true
             override fun loadFromDb(): LiveData<TokenResponse> = movieDao.getToken()
         }.asLiveData()
     }
 
-    fun requestPopularRepository(trigger: PopularTrigger): LiveData<Resource<List<PopularResult>>> {
+    fun requestPopularRepository(trigger: PopularTrigger): LiveData<Resource<List<MoviesResult>>> {
         return object :
-            NetworkBoundResource<List<PopularResult>, PopularResponse>(coroutineContext) {
-            override fun saveCallResult(item: PopularResponse) =
+            NetworkBoundResource<List<MoviesResult>, MoviesResponse>(coroutineContext) {
+            override fun saveCallResult(item: MoviesResponse) =
                 item.results.let {
+                    movieDao.deleteMovie()
                     db.runInTransaction {
-                        movieDao.saveNowPlay(it)
+                        movieDao.saveMovies(it)
                     }
                 }
 
-            override fun createCall(): LiveData<ApiResponse<PopularResponse>> =
+            override fun createCall(): LiveData<ApiResponse<MoviesResponse>> =
                 movieService.requestPopularAPI(trigger.apiKey)
 
-            override fun shouldFetch(data: List<PopularResult>?): Boolean = true
 
-            override fun loadFromDb(): LiveData<List<PopularResult>> = movieDao.getPopular()
+            override fun shouldFetch(data: List<MoviesResult>?): Boolean = true
+
+            override fun loadFromDb(): LiveData<List<MoviesResult>> =
+                movieDao.getMovies()
 
         }.asLiveData()
     }
-    fun requestTopRatedRepository(trigger: PopularTrigger): LiveData<Resource<List<TopRatedResult>>> {
+
+    fun requestTopRatedRepository(trigger: PopularTrigger): LiveData<Resource<List<MoviesResult>>> {
         return object :
-            NetworkBoundResource<List<TopRatedResult>, TopRatedResponse>(coroutineContext) {
-            override fun saveCallResult(item: TopRatedResponse) =
+            NetworkBoundResource<List<MoviesResult>, MoviesResponse>(coroutineContext) {
+            override fun saveCallResult(item: MoviesResponse) =
                 item.results.let {
+                    movieDao.deleteMovie()
                     db.runInTransaction {
-                        movieDao.saveNowPlay(it)
+                        movieDao.saveMovies(it)
                     }
                 }
 
-            override fun createCall(): LiveData<ApiResponse<TopRatedResponse>> =
+            override fun createCall(): LiveData<ApiResponse<MoviesResponse>> =
                 movieService.requestTopRatedAPI(trigger.apiKey)
 
-            override fun shouldFetch(data: List<TopRatedResult>?): Boolean = true
+            override fun shouldFetch(data: List<MoviesResult>?): Boolean = true
+            override fun loadFromDb(): LiveData<List<MoviesResult>> = movieDao.getMovies()
 
-            override fun loadFromDb(): LiveData<List<TopRatedResult>> = movieDao.getTopRated()
 
         }.asLiveData()
     }
 
-    fun requestUpcomingRepository(trigger: PopularTrigger): LiveData<Resource<List<UpcomingResult>>> {
+    fun requestUpcomingRepository(trigger: PopularTrigger): LiveData<Resource<List<MoviesResult>>> {
         return object :
-            NetworkBoundResource<List<UpcomingResult>, UpcomingResponse>(coroutineContext) {
-            override fun saveCallResult(item: UpcomingResponse) =
+            NetworkBoundResource<List<MoviesResult>, MoviesResponse>(coroutineContext) {
+            override fun saveCallResult(item: MoviesResponse) =
                 item.results.let {
+                    movieDao.deleteMovie()
                     db.runInTransaction {
-                        movieDao.saveNowPlay(it)
+                        movieDao.saveMovies(it)
                     }
                 }
 
-            override fun createCall(): LiveData<ApiResponse<UpcomingResponse>> =
+            override fun createCall(): LiveData<ApiResponse<MoviesResponse>> =
                 movieService.requestUpcomingAPI(trigger.apiKey)
 
-            override fun shouldFetch(data: List<UpcomingResult>?): Boolean = true
+            override fun shouldFetch(data: List<MoviesResult>?): Boolean = true
 
-            override fun loadFromDb(): LiveData<List<UpcomingResult>> = movieDao.getUpcoming()
+            override fun loadFromDb(): LiveData<List<MoviesResult>> = movieDao.getMovies()
 
         }.asLiveData()
     }
 
-    fun requestNowPlayingRepository(trigger: PopularTrigger): LiveData<Resource<List<NowPlayingResult>>> {
+    fun requestNowPlayingRepository(trigger: PopularTrigger): LiveData<Resource<List<MoviesResult>>> {
         return object :
-            NetworkBoundResource<List<NowPlayingResult>, NowPlayResponse>(coroutineContext) {
-            override fun saveCallResult(item: NowPlayResponse) =
+            NetworkBoundResource<List<MoviesResult>, MoviesResponse>(coroutineContext) {
+            override fun saveCallResult(item: MoviesResponse) =
                 item.results.let {
+                    movieDao.deleteMovie()
                     db.runInTransaction {
-                        movieDao.saveNowPlay(it)
+                        movieDao.saveMovies(it)
                     }
                 }
 
-            override fun createCall(): LiveData<ApiResponse<NowPlayResponse>> =
+            override fun createCall(): LiveData<ApiResponse<MoviesResponse>> =
                 movieService.requestNowPlayingAPI(trigger.apiKey)
 
-            override fun shouldFetch(data: List<NowPlayingResult>?): Boolean = true
+            override fun shouldFetch(data: List<MoviesResult>?): Boolean = true
 
-            override fun loadFromDb(): LiveData<List<NowPlayingResult>> = movieDao.getNowplay()
+            override fun loadFromDb(): LiveData<List<MoviesResult>> = movieDao.getMovies()
 
         }.asLiveData()
     }

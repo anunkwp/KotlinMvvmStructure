@@ -6,7 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import com.nankung.network.engine.trigger.PopularTrigger
-import com.nankung.network.model.response.result.MoviesResult
+import com.nankung.network.model.response.result.*
 import com.nankung.network.remote.AbsentLiveData
 import com.nankung.network.remote.Resource
 import com.nankung.network.repository.MovieRepository
@@ -18,10 +18,10 @@ import kotlinx.coroutines.Job
 class MainViewModel(application: Application, private val movieRepository: MovieRepository) :
     AndroidViewModel(application) {
     private val triggerPopular = MutableLiveData<PopularTrigger>()
-    private val api_key = MutableLiveData<String>()
     var job: Job? = null
 
-    val requestPopularResource: LiveData<Resource<List<MoviesResult>>> =
+
+    fun requestPopularResource(): LiveData<Resource<List<MoviesResult>>> =
         Transformations.switchMap(triggerPopular) { trigger ->
             if (trigger == null) {
                 AbsentLiveData.create()
@@ -29,7 +29,9 @@ class MainViewModel(application: Application, private val movieRepository: Movie
                 movieRepository.requestPopularRepository(trigger)
             }
         }
-    val requestTopRatedResource : LiveData<Resource<List<MoviesResult>>> =
+
+
+    fun requestTopRatedResource(): LiveData<Resource<List<MoviesResult>>> =
         Transformations.switchMap(triggerPopular) { trigger ->
             if (trigger == null) {
                 AbsentLiveData.create()
@@ -38,7 +40,7 @@ class MainViewModel(application: Application, private val movieRepository: Movie
             }
         }
 
-    val requestUpcomingResource : LiveData<Resource<List<MoviesResult>>> =
+    fun requestUpcomingResource(): LiveData<Resource<List<MoviesResult>>> =
         Transformations.switchMap(triggerPopular) { trigger ->
             if (trigger == null) {
                 AbsentLiveData.create()
@@ -46,7 +48,8 @@ class MainViewModel(application: Application, private val movieRepository: Movie
                 movieRepository.requestUpcomingRepository(trigger)
             }
         }
-    val requestNowPlayingResource : LiveData<Resource<List<MoviesResult>>> =
+
+    fun requestNowPlayingResource(): LiveData<Resource<List<MoviesResult>>> =
         Transformations.switchMap(triggerPopular) { trigger ->
             if (trigger == null) {
                 AbsentLiveData.create()
@@ -58,9 +61,9 @@ class MainViewModel(application: Application, private val movieRepository: Movie
     fun initPopularData(api_key: String) {
         PopularTrigger(api_key).let {
             this.triggerPopular.value = it
-            this.api_key.value = api_key
         }
     }
+
     override fun onCleared() {
         super.onCleared()
         job?.cancel()

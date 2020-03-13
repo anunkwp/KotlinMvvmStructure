@@ -3,6 +3,7 @@ package com.nankung.network.service.interfaces
 import androidx.lifecycle.LiveData
 import com.nankung.network.model.response.*
 import com.nankung.network.model.response.body.ValidateBody
+import com.nankung.network.model.response.MoviesResponse
 import com.nankung.network.module.MovieApiService
 import com.nankung.network.remote.ApiResponse
 import retrofit2.http.*
@@ -23,22 +24,22 @@ interface MovieService {
     @GET(MovieApiService.NOW_PLAYING_MOVIE)
     fun requestNowPlayingAPI(
         @Query("api_key") api_key: String
-    ): LiveData<ApiResponse<NowPlayResponse>>
+    ): LiveData<ApiResponse<MoviesResponse>>
 
     @GET(MovieApiService.UPCOMING_MOVIE)
     fun requestUpcomingAPI(
         @Query("api_key") api_key: String
-    ): LiveData<ApiResponse<UpcomingResponse>>
+    ): LiveData<ApiResponse<MoviesResponse>>
 
     @GET(MovieApiService.TOP_RATED_MOVIE)
     fun requestTopRatedAPI(
         @Query("api_key") api_key: String
-    ): LiveData<ApiResponse<TopRatedResponse>>
+    ): LiveData<ApiResponse<MoviesResponse>>
 
     @GET(MovieApiService.POPULAR_MOVIE)
     fun requestPopularAPI(
         @Query("api_key") api_key: String
-    ): LiveData<ApiResponse<PopularResponse>>
+    ): LiveData<ApiResponse<MoviesResponse>>
 
 
 }

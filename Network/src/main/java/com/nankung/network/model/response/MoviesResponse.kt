@@ -1,9 +1,9 @@
 package com.nankung.network.model.response
 
 import com.google.gson.annotations.SerializedName
-import com.nankung.network.model.response.result.PopularResult
+import com.nankung.network.model.response.result.MoviesResult
 
-data class PopularResponse(
+data class MoviesResponse(
     @SerializedName("page")
     val page: Int?,
 
@@ -11,7 +11,7 @@ data class PopularResponse(
     val totalPages: Int?,
 
     @SerializedName("results")
-    val results: List<PopularResult>?,
+    val results: List<MoviesResult>?,
 
     @SerializedName("total_results")
     val totalResults: Int?
