@@ -11,7 +11,7 @@ fun FragmentActivity.showChoiceDialog(title: String? = null, message: String, po
         positiveClickListener = positiveClickListener,
         negativeClickListener = negativeClickListener
     )
-fun Fragment.showChoiceDialog(title: String? = null, message: String, positiveClickListener: PositiveClickListener?, negativeClickListener: NegativeClickListener? = null) = DialogManager.showDialog(this.childFragmentManager, title, message, positiveClickListener = positiveClickListener, negativeClickListener = negativeClickListener)
+fun Fragment.showChoiceDialog(title: String? = null, message: String, positiveClickListener: PositiveClickListener?= null, negativeClickListener: NegativeClickListener? = null) = DialogManager.showDialog(this.childFragmentManager, title, message, positiveClickListener = positiveClickListener, negativeClickListener = negativeClickListener)
 
 fun FragmentActivity.showGradientLoading() = DialogManager.showLoadingGradientDialog(this.supportFragmentManager)
 fun Fragment.showGradientLoading() = DialogManager.showLoadingGradientDialog(this.childFragmentManager)
