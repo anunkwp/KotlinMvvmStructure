@@ -6,6 +6,8 @@ import com.nankung.network.remote.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
+
+
 abstract class NetworkBoundResource<ResultType, RequestType>
 constructor(private val contextProviders: ContextProviders) {
 

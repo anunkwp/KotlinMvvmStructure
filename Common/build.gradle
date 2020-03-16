@@ -53,6 +53,7 @@ dependencies {
     kapt 'com.github.bumptech.glide:compiler:4.11.0'
 
     //other
+    api 'androidx.multidex:multidex:2.0.1'
     api 'com.akexorcist:localization:1.2.4'
     api 'com.jakewharton.timber:timber:4.7.1'
     api 'androidx.recyclerview:recyclerview:1.1.0'

@@ -1,11 +1,13 @@
 package com.nankung.common.module.extension
 
+import android.app.Activity
 import android.app.Application
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.content.pm.Signature
 import android.graphics.drawable.Drawable
+import androidx.appcompat.app.AppCompatActivity
 
 /**
  * Created by「 Nan Kung 」on 09 MARCH 2020 ^^

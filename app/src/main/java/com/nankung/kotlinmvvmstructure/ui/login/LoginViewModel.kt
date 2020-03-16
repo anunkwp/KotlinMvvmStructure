@@ -1,4 +1,4 @@
-package com.nankung.kotlinmvvmstructure.view.ui.login
+package com.nankung.kotlinmvvmstructure.ui.login
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
@@ -44,7 +44,7 @@ class LoginViewModel(application: Application, private val movieRepository: Movi
     }
 
     fun initValidate(api_key: String, body: ValidateBody) {
-        ValidateTrigger(api_key, body!!).let {
+        ValidateTrigger(api_key, body).let {
             this.triggerValidate.value = it
         }
     }

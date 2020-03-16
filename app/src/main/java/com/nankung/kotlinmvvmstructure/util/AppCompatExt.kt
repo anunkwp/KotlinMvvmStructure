@@ -1,9 +1,10 @@
-package com.nankung.kotlinmvvmstructure.view.util
+package com.nankung.kotlinmvvmstructure.util
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import com.nankung.kotlinmvvmstructure.view.util.ViewModelFactory
 
 
 fun <T : ViewModel> AppCompatActivity.obtainViewModel(

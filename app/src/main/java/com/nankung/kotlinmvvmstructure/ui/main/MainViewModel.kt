@@ -1,4 +1,4 @@
-package com.nankung.kotlinmvvmstructure.view.ui.main
+package com.nankung.kotlinmvvmstructure.ui.main
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
@@ -23,7 +23,6 @@ class MainViewModel(application: Application, private val movieRepository: Movie
             if (trigger == null) {
                 AbsentLiveData.create()
             } else {
-
                 movieRepository.requestPopularRepository(trigger)
             }
         }

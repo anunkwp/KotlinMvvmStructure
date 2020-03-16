@@ -1,4 +1,4 @@
-package com.nankung.kotlinmvvmstructure.view.ui.login
+package com.nankung.kotlinmvvmstructure.ui.login
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -10,8 +10,8 @@ import com.nankung.common.module.base.mvvm.activity.AppMvvmActivity
 import com.nankung.common.module.dialog.hideLoading
 import com.nankung.common.module.dialog.showGradientLoading
 import com.nankung.kotlinmvvmstructure.R
-import com.nankung.kotlinmvvmstructure.view.ui.main.MainActivity
-import com.nankung.kotlinmvvmstructure.view.util.obtainViewModel
+import com.nankung.kotlinmvvmstructure.ui.main.MainActivity
+import com.nankung.kotlinmvvmstructure.util.obtainViewModel
 import com.nankung.network.model.response.body.ValidateBody
 import com.nankung.network.model.exeption.ErrorConverter
 import com.nankung.network.remote.Status.*

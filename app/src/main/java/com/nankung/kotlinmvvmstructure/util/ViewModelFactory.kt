@@ -3,14 +3,14 @@ package com.nankung.kotlinmvvmstructure.view.util
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.nankung.kotlinmvvmstructure.view.ui.login.LoginViewModel
-import com.nankung.kotlinmvvmstructure.view.ui.main.MainViewModel
+import com.nankung.kotlinmvvmstructure.ui.login.LoginViewModel
+import com.nankung.kotlinmvvmstructure.ui.main.MainViewModel
 import com.nankung.network.database.MovieDatabase
 import com.nankung.network.repository.MovieRepository
 import com.nankung.network.service.ApiServiceFactory
 
 
-class ViewModelFactory private constructor(
+class ViewModelFactory(
     private val application: Application,
     private val movieRepository: MovieRepository
 ) : ViewModelProvider.NewInstanceFactory() {
@@ -33,17 +33,17 @@ class ViewModelFactory private constructor(
         fun getInstance(application: Application): ViewModelFactory {
             return INSTANCE
                 ?: synchronized(ViewModelFactory::class.java) {
-                ViewModelFactory(
-                    application,
-                    MovieRepository.getInstance(
-                        MovieDatabase.getDatabase(application.applicationContext),
-                        ApiServiceFactory.getService()
+                    ViewModelFactory(
+                        application,
+                        MovieRepository.getInstance(
+                            MovieDatabase.getDatabase(application.applicationContext),
+                            ApiServiceFactory.getService()
+                        )
                     )
-                )
-                    .also { INSTANCE = it }
-            }
+                        .also { INSTANCE = it }
+                }
         }
 
-
     }
+
 }
