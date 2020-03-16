@@ -20,6 +20,7 @@ import com.nankung.kotlinmvvmstructure.R
 import com.nankung.kotlinmvvmstructure.events.GoToDashBoard
 import com.nankung.kotlinmvvmstructure.ui.dashboard.DashboardFragment
 import com.nankung.kotlinmvvmstructure.ui.main.adapter.RecyclerViewMovieAdapter
+import com.nankung.kotlinmvvmstructure.util.ResponseConverter
 import com.nankung.kotlinmvvmstructure.util.obtainViewModel
 import com.nankung.network.model.exeption.ErrorConverter
 import com.nankung.network.model.response.result.MoviesResult
@@ -195,7 +196,9 @@ class HomeFragment : AppMvvmFragment() {
             when (response.status) {
                 Status.SUCCESS -> {
                     hideLoading()
-                    initRecyclerView(response.data)
+                    val data =  ResponseConverter.convertTopRateDESC(response)
+                    initRecyclerView(data)
+
                 }
                 Status.LOADING -> {
                     showGradientLoading()
