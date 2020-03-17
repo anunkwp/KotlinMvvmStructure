@@ -44,17 +44,17 @@ class HomeFragment : AppMvvmFragment() {
         return inflater.inflate(R.layout.home_fragment, container, false)
     }
 
-    private fun obtainViewModel(): HomeViewModel = obtainMovieViewModel(
-        HomeViewModel::class.java)
-
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
         viewModel = obtainViewModel()
-        viewModel.initPopularData(URLService.tmdbApiKey)
+        viewModel.initPopularData(URLService.tmdbApiKey,"th")
         initialObServe()
         initListener()
     }
+
+    private fun obtainViewModel(): HomeViewModel = obtainMovieViewModel(
+        HomeViewModel::class.java)
+
 
     private fun initListener() {
         btnNowPlay.setOnClickListener(onButtonClick())

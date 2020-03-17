@@ -33,7 +33,8 @@ interface MovieService {
 
     @GET(MovieApiService.TOP_RATED_MOVIE)
     fun requestTopRatedAPI(
-        @Query("api_key") api_key: String
+        @Query("api_key") api_key: String,
+        @Query("language") language: String
     ): LiveData<ApiResponse<MoviesResponse>>
 
     @GET(MovieApiService.POPULAR_MOVIE)

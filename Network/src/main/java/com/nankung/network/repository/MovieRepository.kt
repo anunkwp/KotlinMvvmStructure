@@ -111,7 +111,7 @@ class MovieRepository(
                 }
 
             override fun createCall(): LiveData<ApiResponse<MoviesResponse>> =
-                movieService.requestTopRatedAPI(trigger.apiKey)
+                movieService.requestTopRatedAPI(trigger.apiKey,trigger.language)
 
             override fun shouldFetch(data: List<MoviesResult>?): Boolean = true
             override fun loadFromDb(): LiveData<List<MoviesResult>> = movieDao.getMovies()

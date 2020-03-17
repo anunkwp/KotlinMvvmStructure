@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import com.nankung.common.module.base.livedata.SingleLiveEvent
 import com.nankung.common.module.base.viewmodel.BaseSharedViewModel
+import com.nankung.common.module.extension.util.AppLanguage
 import com.nankung.network.engine.trigger.PopularTrigger
 import com.nankung.network.model.response.result.MoviesResult
 import com.nankung.network.remote.AbsentLiveData
@@ -52,8 +53,8 @@ class HomeViewModel (application: Application, private val movieRepository: Movi
             }
         }
 
-    fun initPopularData(api_key: String) {
-        PopularTrigger(api_key).let {
+    fun initPopularData(api_key: String,language: String) {
+        PopularTrigger(api_key,language).let {
             // invoke นี้อยู่ใน SingleLiveEvent โดยเอา keys เข้า ObServer ปกติ แบบ triggerPopular.value = api_key
             trigger.invoke(it)
         }
