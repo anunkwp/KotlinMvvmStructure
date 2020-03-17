@@ -1,7 +1,6 @@
-package com.nankung.kotlinmvvmstructure.ui.main
+package com.nankung.kotlinmvvmstructure.ui.home
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import com.nankung.common.module.base.livedata.SingleLiveEvent

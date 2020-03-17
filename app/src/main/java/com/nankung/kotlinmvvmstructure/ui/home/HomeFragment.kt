@@ -1,7 +1,6 @@
-package com.nankung.kotlinmvvmstructure.ui.main
+package com.nankung.kotlinmvvmstructure.ui.home
 
 import android.annotation.SuppressLint
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -18,10 +17,9 @@ import com.nankung.common.module.dialog.showGradientLoading
 
 import com.nankung.kotlinmvvmstructure.R
 import com.nankung.kotlinmvvmstructure.events.GoToDashBoard
-import com.nankung.kotlinmvvmstructure.ui.dashboard.DashboardFragment
 import com.nankung.kotlinmvvmstructure.ui.main.adapter.RecyclerViewMovieAdapter
 import com.nankung.kotlinmvvmstructure.util.ResponseConverter
-import com.nankung.kotlinmvvmstructure.util.obtainViewModel
+import com.nankung.kotlinmvvmstructure.util.obtainMovieViewModel
 import com.nankung.network.model.exeption.ErrorConverter
 import com.nankung.network.model.response.result.MoviesResult
 import com.nankung.network.remote.Status
@@ -47,7 +45,8 @@ class HomeFragment : AppMvvmFragment() {
         return inflater.inflate(R.layout.home_fragment, container, false)
     }
 
-    private fun obtainViewModel(): HomeViewModel = obtainViewModel(HomeViewModel::class.java)
+    private fun obtainViewModel(): HomeViewModel = obtainMovieViewModel(
+        HomeViewModel::class.java)
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -213,5 +212,6 @@ class HomeFragment : AppMvvmFragment() {
         })
 
     }
+
 
 }

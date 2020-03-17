@@ -28,8 +28,8 @@ abstract class BaseSharedViewModel(application: Application) : BaseViewModel(app
         busViewModel.newSubscribe(activity, observer)
     }
 
-    fun subscribeBus(fragment: FragmentActivity, observer: Observer<Any>) {
-        busViewModel.subscribe(fragment, observer)
+    fun subscribeBus(activity: FragmentActivity, observer: Observer<Any>) {
+        busViewModel.subscribe(activity, observer)
     }
 
     fun subscribeBus(fragment: Fragment, observer: Observer<Any>) {

@@ -12,10 +12,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.navigation.ui.AppBarConfiguration
 import com.nankung.kotlinmvvmstructure.events.GoToDashBoard
 import com.nankung.kotlinmvvmstructure.ui.dashboard.DashboardFragment
-import com.nankung.kotlinmvvmstructure.util.obtainViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import com.nankung.kotlinmvvmstructure.util.obtainMovieViewModel
 
 class MainActivity : AppMvvmActivity() {
 
@@ -43,7 +40,7 @@ class MainActivity : AppMvvmActivity() {
         viewModel.subscribeBus(this@MainActivity, observer)
     }
 
-    private fun obtainViewModel(): MainViewModel = obtainViewModel(MainViewModel::class.java)
+    private fun obtainViewModel(): MainViewModel = obtainMovieViewModel(MainViewModel::class.java)
 
     private var observer: Observer<Any> = Observer { event ->
         when (event) {

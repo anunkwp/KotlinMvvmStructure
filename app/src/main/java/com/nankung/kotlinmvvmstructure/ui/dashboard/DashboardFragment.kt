@@ -11,7 +11,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.nankung.bottomnavex.ui.dashboard.DashboardViewModel
 import com.nankung.kotlinmvvmstructure.R
-import com.nankung.kotlinmvvmstructure.ui.main.HomeFragment
 
 class DashboardFragment : Fragment() {
 
@@ -30,8 +29,7 @@ class DashboardFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        dashboardViewModel =
-                ViewModelProviders.of(this).get(DashboardViewModel::class.java)
+        dashboardViewModel = ViewModelProviders.of(this).get(DashboardViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_dashboard, container, false)
         val textView: TextView = root.findViewById(R.id.text_dashboard)
         Toast.makeText(activity,"Open DashboardFragment success", Toast.LENGTH_SHORT).show()

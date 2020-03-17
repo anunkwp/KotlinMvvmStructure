@@ -11,7 +11,7 @@ import com.nankung.common.module.dialog.hideLoading
 import com.nankung.common.module.dialog.showGradientLoading
 import com.nankung.kotlinmvvmstructure.R
 import com.nankung.kotlinmvvmstructure.ui.main.MainActivity
-import com.nankung.kotlinmvvmstructure.util.obtainViewModel
+import com.nankung.kotlinmvvmstructure.util.obtainMovieViewModel
 import com.nankung.network.model.response.body.ValidateBody
 import com.nankung.network.model.exeption.ErrorConverter
 import com.nankung.network.remote.Status.*
@@ -38,7 +38,7 @@ class LoginActivity : AppMvvmActivity() {
         }
     }
 
-    private fun obtainViewModel(): LoginViewModel = obtainViewModel(LoginViewModel::class.java)
+    private fun obtainViewModel(): LoginViewModel = obtainMovieViewModel(LoginViewModel::class.java)
 
     @SuppressLint("LogNotTimber")
     private fun callValidateToken() {

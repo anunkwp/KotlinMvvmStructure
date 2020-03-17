@@ -17,49 +17,6 @@ import com.nankung.network.repository.MovieRepository
 
 class MainViewModel(application: Application, private val movieRepository: MovieRepository) :
     BaseSharedViewModel(application) {
-    private val triggerPopular = SingleLiveEvent<PopularTrigger>()
 
-    fun requestPopularResource(): LiveData<Resource<List<MoviesResult>>> =
-        Transformations.switchMap(triggerPopular) { trigger ->
-            if (trigger == null) {
-                AbsentLiveData.create()
-            } else {
-                movieRepository.requestPopularRepository(trigger)
-            }
-        }
-
-
-    fun requestTopRatedResource(): LiveData<Resource<List<MoviesResult>>> =
-        Transformations.switchMap(triggerPopular) { trigger ->
-            if (trigger == null) {
-                AbsentLiveData.create()
-            } else {
-                movieRepository.requestTopRatedRepository(trigger)
-            }
-        }
-
-    fun requestUpcomingResource(): LiveData<Resource<List<MoviesResult>>> =
-        Transformations.switchMap(triggerPopular) { trigger ->
-            if (trigger == null) {
-                AbsentLiveData.create()
-            } else {
-                movieRepository.requestUpcomingRepository(trigger)
-            }
-        }
-
-    fun requestNowPlayingResource(): LiveData<Resource<List<MoviesResult>>> =
-        Transformations.switchMap(triggerPopular) { trigger ->
-            if (trigger == null) {
-                AbsentLiveData.create()
-            } else {
-                movieRepository.requestNowPlayingRepository(trigger)
-            }
-        }
-
-    fun initPopularData(api_key: String) {
-        PopularTrigger(api_key).let {
-            // invoke นี้อยู่ใน SingleLiveEvent โดยเอา keys เข้า ObServer ปกติ แบบ triggerPopular.value = api_key
-            triggerPopular.invoke(it)
-        }
-    }
+    //ยังไม่ได้ทำอะไร
 }

@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.nankung.kotlinmvvmstructure.ui.main.HomeFragment"
+        android:name="com.nankung.kotlinmvvmstructure.ui.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/home_fragment" >
         <action

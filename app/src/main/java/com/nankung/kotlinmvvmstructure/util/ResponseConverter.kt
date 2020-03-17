@@ -1,6 +1,6 @@
 package com.nankung.kotlinmvvmstructure.util
 
-import com.nankung.network.model.response.MoviesResponse
+import com.nankung.kotlinmvvmstructure.R
 import com.nankung.network.model.response.result.MoviesResult
 import com.nankung.network.remote.Resource
 
@@ -9,6 +9,7 @@ import com.nankung.network.remote.Resource
  */
 object ResponseConverter {
 
+
     fun convertTopRateDESC(movie: Resource<List<MoviesResult>>): List<MoviesResult>? {
         movie.data
             ?.sortedByDescending {it.vote_average }
@@ -16,4 +17,7 @@ object ResponseConverter {
                 return it
             }
     }
+
+
+
 }
