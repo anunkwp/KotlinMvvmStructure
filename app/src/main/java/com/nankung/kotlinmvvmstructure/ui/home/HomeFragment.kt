@@ -16,8 +16,7 @@ import com.nankung.common.module.dialog.hideLoading
 import com.nankung.common.module.dialog.showGradientLoading
 
 import com.nankung.kotlinmvvmstructure.R
-import com.nankung.kotlinmvvmstructure.events.GoToDashBoard
-import com.nankung.kotlinmvvmstructure.ui.main.adapter.RecyclerViewMovieAdapter
+import com.nankung.kotlinmvvmstructure.ui.home.adapter.RecyclerViewMovieAdapter
 import com.nankung.kotlinmvvmstructure.util.ResponseConverter
 import com.nankung.kotlinmvvmstructure.util.obtainMovieViewModel
 import com.nankung.network.model.exeption.ErrorConverter
@@ -69,8 +68,7 @@ class HomeFragment : AppMvvmFragment() {
         return View.OnClickListener {
             when (it) {
                 btnNowPlay -> {
-                    viewModel.requestNowPlayingResource()
-                        .observe(viewLifecycleOwner, Observer { response ->
+                    viewModel.requestNowPlayingResource().observe(viewLifecycleOwner, Observer { response ->
                             when (response.status) {
                                 Status.SUCCESS -> {
                                     hideLoading()
@@ -91,8 +89,7 @@ class HomeFragment : AppMvvmFragment() {
 
                 }
                 btnPopular -> {
-                    viewModel.requestPopularResource()
-                        .observe(viewLifecycleOwner, Observer { response ->
+                    viewModel.requestPopularResource().observe(viewLifecycleOwner, Observer { response ->
                             when (response.status) {
                                 Status.SUCCESS -> {
                                     hideLoading()
@@ -113,8 +110,7 @@ class HomeFragment : AppMvvmFragment() {
 
                 }
                 btnTopRated -> {
-                    viewModel.requestTopRatedResource()
-                        .observe(viewLifecycleOwner, Observer { response ->
+                    viewModel.requestTopRatedResource().observe(viewLifecycleOwner, Observer { response ->
                             when (response.status) {
                                 Status.SUCCESS -> {
                                     hideLoading()
@@ -134,9 +130,8 @@ class HomeFragment : AppMvvmFragment() {
                         })
                 }
                 btnUpcoming -> {
-                    viewModel.postEvent(GoToDashBoard())
-                    viewModel.requestUpcomingResource()
-                        .observe(viewLifecycleOwner, Observer { response ->
+                    //viewModel.postEvent(GoToDashBoard())
+                    viewModel.requestUpcomingResource().observe(viewLifecycleOwner, Observer { response ->
                             when (response.status) {
                                 Status.SUCCESS -> {
                                     hideLoading()
@@ -162,7 +157,6 @@ class HomeFragment : AppMvvmFragment() {
         }
     }
 
-    @SuppressLint("LogNotTimber")
     private fun initRecyclerView(data: List<MoviesResult>?) {
         recyclerviewMovie.apply {
             movieAdapter = RecyclerViewMovieAdapter(context, data!!)

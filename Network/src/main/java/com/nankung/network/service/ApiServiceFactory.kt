@@ -4,6 +4,7 @@ import com.nankung.common.module.base.URLService
 import com.nankung.network.network.DefaultHttpLoggerInterceptor
 import com.nankung.network.remote.LiveDataCallAdapterFactory
 import com.nankung.network.service.interfaces.MovieService
+import com.nankung.network.service.interfaces.PeopleService
 import okhttp3.Headers
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -19,12 +20,15 @@ class ApiServiceFactory {
     companion object {
 
         @Volatile
-        private var INSTANCE: MovieService? = null
+        private var MOVIE_INSTANCE: MovieService? = null
+        private var PEOPLE_INSTANCE: PeopleService? = null
 
         private const val BASE_URL = URLService.TMDB_BASE_URL
 
-        fun getService(): MovieService {
-            return INSTANCE
+
+        // BASE SERVICE INSTANCE URL
+        fun getMovieService(): MovieService {
+            return MOVIE_INSTANCE
                 ?: synchronized(this) {
                     val instance = Retrofit.Builder()
                         .baseUrl(BASE_URL)
@@ -33,11 +37,30 @@ class ApiServiceFactory {
                         .addCallAdapterFactory(LiveDataCallAdapterFactory())
                         .build()
                         .create(MovieService::class.java)
-                    INSTANCE = instance
+                    MOVIE_INSTANCE = instance
                     instance
                 }
         }
 
+        fun getPeopleService(): PeopleService {
+            return PEOPLE_INSTANCE
+                ?: synchronized(this) {
+                    val instance = Retrofit.Builder()
+                        .baseUrl(BASE_URL)
+                        .client(provideOkHttpClient())
+                        .addConverterFactory(MoshiConverterFactory.create())
+                        .addCallAdapterFactory(LiveDataCallAdapterFactory())
+                        .build()
+                        .create(PeopleService::class.java)
+                    PEOPLE_INSTANCE = instance
+                    instance
+                }
+        }
+
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        //OkHttpClient Provide
         private fun provideOkHttpClient(): OkHttpClient {
             val interceptor = HttpLoggingInterceptor()
             interceptor.level = HttpLoggingInterceptor.Level.BODY

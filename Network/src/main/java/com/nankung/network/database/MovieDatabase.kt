@@ -6,12 +6,16 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.nankung.network.model.response.result.MoviesResult
 import com.nankung.network.database.dao.MovieDao
+import com.nankung.network.database.dao.PeopleDao
+import com.nankung.network.model.response.result.PeopleResult
 import com.nankung.network.model.response.TokenResponse
+import com.nankung.network.model.response.result.CombinedResult
 
-@Database(entities = [MoviesResult::class, TokenResponse::class], version = 2, exportSchema = false)
+@Database(entities = [MoviesResult::class, TokenResponse::class, PeopleResult::class, CombinedResult::class], version = 2, exportSchema = false)
 abstract class MovieDatabase : RoomDatabase() {
 
     abstract fun movieDao(): MovieDao
+    abstract fun peopleDao(): PeopleDao
 
     companion object {
 

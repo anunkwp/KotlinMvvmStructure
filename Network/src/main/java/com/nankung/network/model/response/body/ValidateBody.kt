@@ -4,7 +4,7 @@ import android.os.Parcel
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 
-data class  ValidateBody (
+data class ValidateBody(
     @SerializedName("username") var username: String? = "",
     @SerializedName("password") var password: String? = "",
     @SerializedName("request_token") var request_token: String? = ""
@@ -14,7 +14,6 @@ data class  ValidateBody (
         parcel.readString(),
         parcel.readString()
     )
-
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(username)

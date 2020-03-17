@@ -13,10 +13,10 @@ import com.nankung.network.repository.MovieRepository
 
 class HomeViewModel (application: Application, private val movieRepository: MovieRepository) :
     BaseSharedViewModel(application) {
-    private val triggerPopular = SingleLiveEvent<PopularTrigger>()
+    private val trigger = SingleLiveEvent<PopularTrigger>()
 
     fun requestPopularResource(): LiveData<Resource<List<MoviesResult>>> =
-        Transformations.switchMap(triggerPopular) { trigger ->
+        Transformations.switchMap(trigger) { trigger ->
             if (trigger == null) {
                 AbsentLiveData.create()
             } else {
@@ -26,7 +26,7 @@ class HomeViewModel (application: Application, private val movieRepository: Movi
 
 
     fun requestTopRatedResource(): LiveData<Resource<List<MoviesResult>>> =
-        Transformations.switchMap(triggerPopular) { trigger ->
+        Transformations.switchMap(trigger) { trigger ->
             if (trigger == null) {
                 AbsentLiveData.create()
             } else {
@@ -35,7 +35,7 @@ class HomeViewModel (application: Application, private val movieRepository: Movi
         }
 
     fun requestUpcomingResource(): LiveData<Resource<List<MoviesResult>>> =
-        Transformations.switchMap(triggerPopular) { trigger ->
+        Transformations.switchMap(trigger) { trigger ->
             if (trigger == null) {
                 AbsentLiveData.create()
             } else {
@@ -44,7 +44,7 @@ class HomeViewModel (application: Application, private val movieRepository: Movi
         }
 
     fun requestNowPlayingResource(): LiveData<Resource<List<MoviesResult>>> =
-        Transformations.switchMap(triggerPopular) { trigger ->
+        Transformations.switchMap(trigger) { trigger ->
             if (trigger == null) {
                 AbsentLiveData.create()
             } else {
@@ -55,7 +55,7 @@ class HomeViewModel (application: Application, private val movieRepository: Movi
     fun initPopularData(api_key: String) {
         PopularTrigger(api_key).let {
             // invoke นี้อยู่ใน SingleLiveEvent โดยเอา keys เข้า ObServer ปกติ แบบ triggerPopular.value = api_key
-            triggerPopular.invoke(it)
+            trigger.invoke(it)
         }
     }
 }

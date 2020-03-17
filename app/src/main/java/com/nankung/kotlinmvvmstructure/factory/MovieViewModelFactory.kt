@@ -1,4 +1,4 @@
-package com.nankung.kotlinmvvmstructure.util
+package com.nankung.kotlinmvvmstructure.factory
 
 import android.app.Application
 import androidx.lifecycle.ViewModel
@@ -11,7 +11,7 @@ import com.nankung.network.repository.MovieRepository
 import com.nankung.network.service.ApiServiceFactory
 
 
-class ViewModelFactory(
+class MovieViewModelFactory(
     private val application: Application,
     private val movieRepository: MovieRepository
 ) : ViewModelProvider.NewInstanceFactory() {
@@ -32,31 +32,16 @@ class ViewModelFactory(
 
     companion object {
         @Volatile
-        private var INSTANCE: ViewModelFactory? = null
+        private var INSTANCE: MovieViewModelFactory? = null
 
-        fun getMovieInstance(application: Application): ViewModelFactory {
+        fun getMovieInstance(application: Application): MovieViewModelFactory {
             return INSTANCE
-                ?: synchronized(ViewModelFactory::class.java) {
-                    ViewModelFactory(
+                ?: synchronized(MovieViewModelFactory::class.java) {
+                    MovieViewModelFactory(
                         application,
                         MovieRepository.getInstance(
                             MovieDatabase.getDatabase(application.applicationContext),
-                            ApiServiceFactory.getService()
-                        )
-                    )
-                        .also { INSTANCE = it }
-                }
-        }
-
-        //TODO (MultiRepo)ถ้ากรณีอยากสร้าง Repository แยก ก็สร้าง Instance ตัวใหม่ขึ้นมา แล้วผูก Param ใหม่
-        fun getInstance2(application: Application): ViewModelFactory {
-            return INSTANCE
-                ?: synchronized(ViewModelFactory::class.java) {
-                    ViewModelFactory(
-                        application,
-                        MovieRepository.getInstance(
-                            MovieDatabase.getDatabase(application.applicationContext),
-                            ApiServiceFactory.getService()
+                            ApiServiceFactory.getMovieService()
                         )
                     )
                         .also { INSTANCE = it }
