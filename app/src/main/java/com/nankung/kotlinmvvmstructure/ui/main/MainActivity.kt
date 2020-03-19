@@ -3,6 +3,7 @@ package com.nankung.kotlinmvvmstructure.ui.main
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
@@ -45,7 +46,7 @@ class MainActivity : AppMvvmActivity() {
     private var observer: Observer<Any> = Observer { event ->
         when (event) {
             is GoToDashBoard -> {
-                navController?.navigate(R.id.action_navigation_home_to_navigation_dashboard)
+                navController?.navigate(R.id.action_navigation_home_to_navigation_notifications)
                 }
             }
         }

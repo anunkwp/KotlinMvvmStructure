@@ -1,9 +1,12 @@
 package com.nankung.network.model.response.result
 
+import android.os.Parcelable
 import androidx.room.Entity
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
 @Entity(tableName = "movies_all", primaryKeys = ["id"])
+@Parcelize
 data class MoviesResult(
     @SerializedName("overview")
     val overview: String? = "",
@@ -43,8 +46,7 @@ data class MoviesResult(
 
     @SerializedName( "vote_count")
     val vote_count: Int? = 0
-)
-{
+) : Parcelable {
     override fun toString(): String {
         return "\n overview='$overview'," +
                 "\n original_language='$original_language'\n"+

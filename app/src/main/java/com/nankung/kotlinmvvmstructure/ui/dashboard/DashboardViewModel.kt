@@ -6,7 +6,7 @@ import androidx.lifecycle.Transformations
 import com.nankung.common.module.base.livedata.SingleLiveEvent
 import com.nankung.common.module.base.viewmodel.BaseSharedViewModel
 import com.nankung.network.engine.trigger.CombinedTrigger
-import com.nankung.network.model.response.result.CombinedResult
+import com.nankung.network.model.response.result.CombinedCastResult
 import com.nankung.network.model.response.result.PeopleResult
 import com.nankung.network.remote.AbsentLiveData
 import com.nankung.network.remote.Resource
@@ -27,7 +27,7 @@ class DashboardViewModel (application: Application, private val peopleRepository
             }
         }
 
-    val requestCombined:LiveData<Resource<List<CombinedResult>>> =
+    val requestCombined:LiveData<Resource<List<CombinedCastResult>>> =
         Transformations.switchMap(triggerCombined){trigger ->
             if (trigger == null){
                 AbsentLiveData.create()

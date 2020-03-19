@@ -42,10 +42,14 @@ class DashboardFragment : AppMvvmFragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = obtainViewModel()
         viewModel.initKeys(URLService.tmdbApiKey)
+
         initialObServe()
+
     }
 
     private fun obtainViewModel(): DashboardViewModel = obtainPeopleViewModel(DashboardViewModel::class.java)
+
+
 
     private fun initialObServe() {
         viewModel.requestPeopleResource.observe(viewLifecycleOwner, Observer { response ->
@@ -75,7 +79,7 @@ class DashboardFragment : AppMvvmFragment() {
                 Status.SUCCESS -> {
                     response.data.let {
                         hideLoading()
-                        //Log.d("RoomNow", "$it")
+                        Log.d("RoomNow", "$it")
                     }
                 }
                 Status.LOADING -> {

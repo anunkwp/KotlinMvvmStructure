@@ -39,6 +39,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnTestNav"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TestNav"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
     <com.nankung.common.module.widget.AnimatedRecyclerView
         android:id="@+id/recyclerviewMovie"
         android:layout_width="match_parent"

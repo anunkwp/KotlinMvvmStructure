@@ -9,9 +9,20 @@ import com.nankung.network.database.dao.MovieDao
 import com.nankung.network.database.dao.PeopleDao
 import com.nankung.network.model.response.result.PeopleResult
 import com.nankung.network.model.response.TokenResponse
-import com.nankung.network.model.response.result.CombinedResult
+import com.nankung.network.model.response.result.CombinedCastResult
+import com.nankung.network.model.response.result.CombinedCrewResult
 
-@Database(entities = [MoviesResult::class, TokenResponse::class, PeopleResult::class, CombinedResult::class], version = 2, exportSchema = false)
+@Database(
+    entities =
+    [
+        MoviesResult::class,
+        TokenResponse::class,
+        PeopleResult::class,
+        CombinedCastResult::class,
+        CombinedCrewResult::class
+    ]
+    , version = 2, exportSchema = false
+)
 abstract class MovieDatabase : RoomDatabase() {
 
     abstract fun movieDao(): MovieDao
@@ -24,7 +35,11 @@ abstract class MovieDatabase : RoomDatabase() {
 
         fun getDatabase(context: Context): MovieDatabase {
             return INSTANCE ?: synchronized(this) {
-                Room.databaseBuilder(context.applicationContext, MovieDatabase::class.java, "movie_db")
+                Room.databaseBuilder(
+                        context.applicationContext,
+                        MovieDatabase::class.java,
+                        "movie_db"
+                    )
                     .fallbackToDestructiveMigration()
                     .build()
                     .also { INSTANCE = it }

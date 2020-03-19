@@ -3,6 +3,7 @@ package com.nankung.kotlinmvvmstructure.factory
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.nankung.bottomnavex.ui.notifications.NotificationsViewModel
 import com.nankung.kotlinmvvmstructure.ui.login.LoginViewModel
 import com.nankung.kotlinmvvmstructure.ui.home.HomeViewModel
 import com.nankung.kotlinmvvmstructure.ui.main.MainViewModel
@@ -25,6 +26,8 @@ class MovieViewModelFactory(
                     LoginViewModel(application, movieRepository)
                 isAssignableFrom(HomeViewModel::class.java) ->
                     HomeViewModel(application, movieRepository)
+                isAssignableFrom(NotificationsViewModel::class.java) ->
+                    NotificationsViewModel(application, movieRepository)
                 else ->
                     error("Invalid View Model class")
             }

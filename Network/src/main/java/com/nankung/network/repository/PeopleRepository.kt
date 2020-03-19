@@ -4,10 +4,9 @@ import androidx.lifecycle.LiveData
 import com.nankung.network.database.MovieDatabase
 import com.nankung.network.database.dao.PeopleDao
 import com.nankung.network.engine.trigger.CombinedTrigger
-import com.nankung.network.engine.trigger.ValidateTrigger
 import com.nankung.network.model.response.CombinedResponse
 import com.nankung.network.model.response.PeopleResponse
-import com.nankung.network.model.response.result.CombinedResult
+import com.nankung.network.model.response.result.CombinedCastResult
 import com.nankung.network.model.response.result.PeopleResult
 import com.nankung.network.network.NetworkBoundResource
 import com.nankung.network.remote.ApiResponse
@@ -60,22 +59,29 @@ class PeopleRepository(
         }.asLiveData()
     }
 
-    fun requestCombinedRepository(trigger: CombinedTrigger): LiveData<Resource<List<CombinedResult>>> {
+    fun requestCombinedRepository(trigger: CombinedTrigger): LiveData<Resource<List<CombinedCastResult>>> {
         return object :
-            NetworkBoundResource<List<CombinedResult>, CombinedResponse>(coroutineContext) {
+            NetworkBoundResource<List<CombinedCastResult>, CombinedResponse>(coroutineContext) {
             override fun saveCallResult(item: CombinedResponse) {
                 item.cast.let {
-                    peopleDao.deleteCombined()
+                    peopleDao.deleteComCast()
                     db.runInTransaction {
-                        peopleDao.saveCombined(it)
+                        peopleDao.saveComCast(it)
                     }
                 }
+                item.crew.let {
+                    peopleDao.deleteComCrew()
+                    db.runInTransaction {
+                        peopleDao.saveComCrew(it)
+                    }
+                }
+
             }
             override fun createCall(): LiveData<ApiResponse<CombinedResponse>> =
                 peopleService.requestCombinedCredit(trigger.id,trigger.apiKey)
 
-            override fun shouldFetch(data: List<CombinedResult>?): Boolean = true
-            override fun loadFromDb(): LiveData<List<CombinedResult>> = peopleDao.getCombined()
+            override fun shouldFetch(data: List<CombinedCastResult>?): Boolean = true
+            override fun loadFromDb(): LiveData<List<CombinedCastResult>> = peopleDao.getComCast()
         }.asLiveData()
     }
 

@@ -22,7 +22,6 @@ fun <VM : ViewModel> AppCompatActivity.obtainMovieViewModel(
     }
 }
 
-//TODO (MultiRepo) จากนั้นก็มาเช็คเรียก Instance ใหม่ พอจะ Initialize ViewModel ค่อยเรียกเป็นตัวไป ตามที่จะแยก ใน View
 @Suppress("DEPRECATION")
 fun <VM : ViewModel> AppCompatActivity.obtainPeopleViewModel(
     viewModelClass: Class<VM>,

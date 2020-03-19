@@ -14,7 +14,7 @@ import com.nankung.network.model.response.result.*
 @Dao
 interface MovieDao {
 
-    @Query("SELECT * FROM movies_all")
+    @Query("SELECT * FROM movies_all WHERE original_language = 'en'")
     fun getMovies(): LiveData<List<MoviesResult>>
 
     @Query("DELETE FROM movies_all")        //วิธีการที่กรณีข้อมูลใน API แล้ว Response เหมือนกันและเป็นการ insert เพื่ออัพเดทจาก ID แต่ว่ามันคนละ ID

@@ -5,7 +5,9 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.nankung.network.model.response.result.CombinedResult
+import com.nankung.network.model.response.CombinedResponse
+import com.nankung.network.model.response.result.CombinedCastResult
+import com.nankung.network.model.response.result.CombinedCrewResult
 import com.nankung.network.model.response.result.PeopleResult
 
 /**
@@ -17,15 +19,24 @@ interface PeopleDao {
     @Query("SELECT * FROM people")
     fun getPeople(): LiveData<List<PeopleResult>>
 
-    @Query("SELECT * FROM combined")
-    fun getCombined():LiveData<List<CombinedResult>>
+    @Query("SELECT * FROM combined_cast")
+    fun getComCast(): LiveData<List<CombinedCastResult>>
 
-    @Query("DELETE FROM combined")        //วิธีการที่กรณีข้อมูลใน API แล้ว Response เหมือนกันและเป็นการ insert เพื่ออัพเดทจาก ID แต่ว่ามันคนละ ID
-    fun deleteCombined()
+    @Query("SELECT * FROM combined_crew")
+    fun getComCrew(): LiveData<List<CombinedCrewResult>>
+
+    @Query("DELETE FROM combined_cast")        //วิธีการที่กรณีข้อมูลใน API แล้ว Response เหมือนกันและเป็นการ insert เพื่ออัพเดทจาก ID แต่ว่ามันคนละ ID
+    fun deleteComCast()
+
+    @Query("DELETE FROM combined_crew")
+    fun deleteComCrew()
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun savePeople(people: List<PeopleResult>?)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun saveCombined(combined:List<CombinedResult>?)
+    fun saveComCast(combined: List<CombinedCastResult>?)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun saveComCrew(combined: List<CombinedCrewResult>?)
 }

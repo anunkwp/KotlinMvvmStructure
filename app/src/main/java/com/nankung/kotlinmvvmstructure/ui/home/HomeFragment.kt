@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.view.animation.OvershootInterpolator
 import android.widget.Toast
 import androidx.lifecycle.Observer
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.nankung.common.module.base.URLService
 import com.nankung.common.module.base.interfaces.BaseRecyclerViewItemTouchListener
@@ -44,12 +45,24 @@ class HomeFragment : AppMvvmFragment() {
         return inflater.inflate(R.layout.home_fragment, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         viewModel = obtainViewModel()
         viewModel.initPopularData(URLService.tmdbApiKey,"th")
         initialObServe()
         initListener()
+
+        btnTestNav.setOnClickListener {
+            val direction = HomeFragmentDirections.actionNavigationHomeToNavigationNotifications(
+                123,
+                "ปลาฉลามขึ้นบก",
+                456,
+                "จิ้งจกตกบันได"
+            )
+            view.findNavController().navigate(direction)
+        }
+
+
     }
 
     private fun obtainViewModel(): HomeViewModel = obtainMovieViewModel(
@@ -68,6 +81,7 @@ class HomeFragment : AppMvvmFragment() {
         return View.OnClickListener {
             when (it) {
                 btnNowPlay -> {
+
                     viewModel.requestNowPlayingResource().observe(viewLifecycleOwner, Observer { response ->
                             when (response.status) {
                                 Status.SUCCESS -> {
@@ -176,6 +190,8 @@ class HomeFragment : AppMvvmFragment() {
                                 "${data[position].title}",
                                 Toast.LENGTH_SHORT
                             ).show()
+
+
                         }
                     })
             )

@@ -7,8 +7,8 @@ import com.google.gson.annotations.SerializedName
  * Created by 「 Nan Kung 」 on 17/3/2563. ^^
  */
 
-@Entity(tableName = "combined", primaryKeys = ["id"])
-data class CombinedResult(
+@Entity(tableName = "combined_cast", primaryKeys = ["id"])
+data class CombinedCastResult(
 
     @SerializedName("id")
     val id: Int = 0,
