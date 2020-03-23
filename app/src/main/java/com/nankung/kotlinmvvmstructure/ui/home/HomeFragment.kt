@@ -81,7 +81,6 @@ class HomeFragment : AppMvvmFragment() {
         return View.OnClickListener {
             when (it) {
                 btnNowPlay -> {
-
                     viewModel.requestNowPlayingResource().observe(viewLifecycleOwner, Observer { response ->
                             when (response.status) {
                                 Status.SUCCESS -> {
@@ -150,7 +149,6 @@ class HomeFragment : AppMvvmFragment() {
                                 Status.SUCCESS -> {
                                     hideLoading()
                                     initRecyclerView(response.data)
-
                                 }
                                 Status.LOADING -> {
                                     showGradientLoading()
@@ -199,7 +197,7 @@ class HomeFragment : AppMvvmFragment() {
             //Log.d("RoomNow", " $data")
         }
     }
-    @SuppressLint("LogNotTimber")
+
     private fun initialObServe() {
         viewModel.requestTopRatedResource().observe(viewLifecycleOwner, Observer { response ->
             when (response.status) {

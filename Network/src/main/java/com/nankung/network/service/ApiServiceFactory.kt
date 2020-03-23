@@ -59,8 +59,7 @@ class ApiServiceFactory {
 
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-        //OkHttpClient Provide
+       //OkHttpClient Provide
         private fun provideOkHttpClient(): OkHttpClient {
             val interceptor = HttpLoggingInterceptor()
             interceptor.level = HttpLoggingInterceptor.Level.BODY
